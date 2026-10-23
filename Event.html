@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event — Orvèlion</title>
+    <link rel="icon" href="Img/Logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a class="logo" href="index.html">
+            <img src="Img/Logo.jpeg" alt="Logo Orvèlion">
+            <span>
+                <strong>Orvèlion</strong>
+                <small>OSIS SMA Ignatius Global School</small>
+            </span>
+        </a>
+        <nav class="link">
+            <a href="index.html">Home</a>
+            <a href="Event.html" class="active">Event</a>
+            <a href="AboutUs.html">About Us</a>
+        </nav>
+    </header>
+
+    <main class="bodys">
+        <section class="section s1">
+            <div class="page-head">
+                <p class="eyebrow">Agenda · Tahun Ajaran 2026/2027</p>
+                <h1>Event</h1>
+            </div>
+        </section>
+
+        <!-- GANTI-SAMPLE: semua data di bawah (nama, tanggal, lokasi, jam,
+             foto, link detail) masih contoh. Struktur papan mengikuti
+             kebiasaan situs lama Ardraxis: HANYA event yang sedang
+             berlangsung yang ditampilkan — event SEGERA/upcoming TIDAK
+             pernah naik ke papan. Event naik saat mulai, pindah ke
+             dokumentasi begitu selesai. Cara isi:
+             1) BERLANGSUNG   : blok <a class="ev-card is-live"> di grup
+                               "Sedang Berlangsung" + detail di folder event/
+             2) PUNYA LOMBA   : baris <a class="ev-regitem"> di "Pendaftaran
+                               Lomba" — khusus lomba yang daftarnya masih buka.
+                               Kalau link Google Form sudah ada, ganti href
+                               item jadi URL form + target="_blank" rel="noopener"
+                               (otomatis buka tab baru, bukan overlay).
+             3) SELESAI       : baris <a class="ev-row"> (nama + tanggal)
+                               di list "Dokumentasi" + detail + foto galeri
+             4) GALERI        : tile <a class="ev-gcard"> — foto dokumentasi
+                               event yang sudah selesai; klik tile = buka
+                               detail event pemilik foto
+             5) ganti style="--ev-accent:..." dengan warna tema event kamu -->
+
+        <section class="section ev-board">
+            <p class="ev-label">Sedang Berlangsung</p>
+            <div class="ev-grid">
+                <a class="ev-card is-live is-feature" href="event/literasi.html" style="--ev-accent:#D9530D">
+                    <div class="ev-thumb" data-lz>
+                        <img src="Img/event/literasi-b.jpg"
+                             alt="Siswa membaca buku di pameran Pekan Literasi"
+                             width="1200" height="675" loading="eager"
+                             fetchpriority="high" decoding="async">
+                        <span class="badge is-live"><span class="dot"></span>Live</span>
+                    </div>
+                    <div class="ev-card-body">
+                        <h2 class="ev-name">Pekan Literasi Ignatius 2026</h2>
+                        <p class="ev-meta">
+                            <span class="ev-date">19–23 Okt 2026</span>
+                            <span class="ev-dot" aria-hidden="true">·</span>
+                            <span>Perpustakaan &amp; Aula IGS</span>
+                            <span class="ev-dot" aria-hidden="true">·</span>
+                            <span>07.30–15.00</span>
+                        </p>
+                    </div>
+                </a>
+
+                <a class="ev-card is-live" href="event/talent.html" style="--ev-accent:#9C381C">
+                    <div class="ev-thumb" data-lz>
+                        <img src="Img/event/talent-b.jpg"
+                             alt="Panggung pentas seni Ignatius Got Talent"
+                             width="1200" height="675" loading="lazy" decoding="async">
+                        <span class="badge is-live"><span class="dot"></span>Live</span>
+                    </div>
+                    <div class="ev-card-body">
+                        <h2 class="ev-name">Ignatius Got Talent 2026</h2>
+                        <p class="ev-meta">
+                            <span class="ev-date">Audisi: 20 Okt–8 Nov 2026</span>
+                            <span class="ev-dot" aria-hidden="true">·</span>
+                            <span>Aula IGS</span>
+                            <span class="ev-dot" aria-hidden="true">·</span>
+                            <span>15.30–21.00</span>
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+            <p class="ev-label">Pendaftaran Lomba</p>
+            <div class="ev-regboard">
+                <!-- GANTI-SAMPLE: contoh di bawah nyambung ke detail talent.html
+                     (blok "Pendaftaran Lomba" di dalamnya). Kalau link form
+                     sudah siap, ganti href jadi URL Google Form +
+                     target="_blank" rel="noopener". Nambah lomba lain = copy
+                     satu blok <a class="ev-regitem"> + naikkan nomor idx. -->
+                <a class="ev-regitem" href="event/talent.html" style="--ev-accent:#9C381C">
+                    <span class="ev-reg-idx">01</span>
+                    <span class="ev-reg-main">
+                        <span class="ev-reg-name">Ignatius Got Talent 2026 — Audisi</span>
+                        <span class="ev-reg-meta">Solo vokal / instrumen · Grup dance · Band · Talent bebas</span>
+                    </span>
+                    <span class="ev-reg-side">
+                        <span class="ev-reg-deadline">Batas: <strong>5 Nov 2026</strong></span>
+                        <span class="ev-reg-btn">Detail &amp; Daftar<span class="ev-reg-arrow" aria-hidden="true">→</span></span>
+                    </span>
+                </a>
+            </div>
+
+            <p class="ev-label">Dokumentasi</p>
+            <div class="ev-arch">
+                <a class="ev-row" href="event/baksos.html" style="--ev-accent:#E6B1B5">
+                    <span class="ev-row-idx">01</span>
+                    <span class="ev-row-name">Bakti Sosial “Sepenuh Hati”</span>
+                    <span class="ev-row-date">3 Okt 2026</span>
+                    <span class="ev-row-arrow" aria-hidden="true">→</span>
+                </a>
+                <a class="ev-row" href="event/classmeet.html" style="--ev-accent:#C79A5B">
+                    <span class="ev-row-idx">02</span>
+                    <span class="ev-row-name">Class Meeting Akhir Semester</span>
+                    <span class="ev-row-date">19–20 Sep 2026</span>
+                    <span class="ev-row-arrow" aria-hidden="true">→</span>
+                </a>
+                <a class="ev-row" href="event/poi.html" style="--ev-accent:#B4552D">
+                    <span class="ev-row-idx">03</span>
+                    <span class="ev-row-name">Pekan Olahraga Ignatians VII</span>
+                    <span class="ev-row-date">7–9 Sep 2026</span>
+                    <span class="ev-row-arrow" aria-hidden="true">→</span>
+                </a>
+                <a class="ev-row" href="event/mpo.html" style="--ev-accent:#FD8C5A">
+                    <span class="ev-row-idx">04</span>
+                    <span class="ev-row-name">Masa Pengenalan OSIS (MPO) 2026</span>
+                    <span class="ev-row-date">14–15 Agu 2026</span>
+                    <span class="ev-row-arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+
+            <p class="ev-label">Galeri Kegiatan</p>
+            <div class="ev-gal">
+                <!-- GANTI-SAMPLE: tile galeri = foto dokumentasi event SELESAI
+                     (urut dari event terbaru). Klik tile → buka detail event
+                     pemilik foto. Nambah foto = copy satu blok
+                     <a class="ev-gcard">, ganti src/alt/href/captionnya. -->
+                <a class="ev-gcard" href="event/baksos.html" style="--ev-accent:#E6B1B5">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/baksos-g1.jpg" alt="Pengepakan donasi oleh siswa"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Bakti Sosial “Sepenuh Hati”</span>
+                </a>
+                <a class="ev-gcard" href="event/baksos.html" style="--ev-accent:#E6B1B5">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/baksos-g2.jpg" alt="Serah terima sumbangan"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Bakti Sosial “Sepenuh Hati”</span>
+                </a>
+                <a class="ev-gcard" href="event/baksos.html" style="--ev-accent:#E6B1B5">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/baksos-g3.jpg" alt="Dokumentasi rombongan relawan"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Bakti Sosial “Sepenuh Hati”</span>
+                </a>
+                <a class="ev-gcard" href="event/classmeet.html" style="--ev-accent:#C79A5B">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/classmeet-g1.jpg" alt="Suporter kelas di tepi lapangan"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Class Meeting Akhir Semester</span>
+                </a>
+                <a class="ev-gcard" href="event/classmeet.html" style="--ev-accent:#C79A5B">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/classmeet-g2.jpg" alt="Aksi pemain futsal"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Class Meeting Akhir Semester</span>
+                </a>
+                <a class="ev-gcard" href="event/classmeet.html" style="--ev-accent:#C79A5B">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/classmeet-g3.jpg" alt="Penyerahan piala juara umum"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Class Meeting Akhir Semester</span>
+                </a>
+                <a class="ev-gcard" href="event/poi.html" style="--ev-accent:#B4552D">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/poi-g1.jpg" alt="Start lomba estafet"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Pekan Olahraga Ignatians VII</span>
+                </a>
+                <a class="ev-gcard" href="event/poi.html" style="--ev-accent:#B4552D">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/poi-g2.jpg" alt="Duel voli antar angkatan"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Pekan Olahraga Ignatians VII</span>
+                </a>
+                <a class="ev-gcard" href="event/poi.html" style="--ev-accent:#B4552D">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/poi-g3.jpg" alt="Penyerahan piala juara umum"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Pekan Olahraga Ignatians VII</span>
+                </a>
+                <a class="ev-gcard" href="event/mpo.html" style="--ev-accent:#FD8C5A">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/mpo-g1.jpg" alt="Materi pengenalan oleh panitia"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Masa Pengenalan OSIS (MPO) 2026</span>
+                </a>
+                <a class="ev-gcard" href="event/mpo.html" style="--ev-accent:#FD8C5A">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/mpo-g2.jpg" alt="Games lapangan MPO"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Masa Pengenalan OSIS (MPO) 2026</span>
+                </a>
+                <a class="ev-gcard" href="event/mpo.html" style="--ev-accent:#FD8C5A">
+                    <div class="ev-gthumb" data-lz>
+                        <img src="Img/event/mpo-g3.jpg" alt="Kelompok baru bersatu"
+                             width="800" height="600" loading="lazy" decoding="async">
+                    </div>
+                    <span class="ev-gcap">Masa Pengenalan OSIS (MPO) 2026</span>
+                </a>
+            </div>
+            <p class="ev-footnote">Galeri diperbarui setelah setiap event selesai — ketuk foto untuk membuka dokumentasi lengkapnya.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="inner">
+            <div class="ls">
+                <div class="logo">
+                    <img src="Img/Logo.jpeg" alt="Logo Orvèlion">
+                    <div class="brand">
+                        <strong>Orvèlion</strong>
+                        <p class="slogan">Rise Together, Thrive forever</p>
+                    </div>
+                </div>
+            </div>
+            <div class="alamat">
+                <h3>Alamat</h3>
+                <p>SMA Ignatius Global School<br>
+                Jl. Mayor Ruslan No. 118, 20 Ilir I,<br>
+                Kec. Ilir Timur I, Palembang</p>
+            </div>
+            <div class="media">
+                <h3>Media Sosial</h3>
+                <a href="#">Instagram</a>
+                <a href="#">TikTok</a>
+                <a href="#">YouTube</a>
+            </div>
+        </div>
+        <div class="bottom">
+            <span>© 2026 Orvèlion — OSIS SMA Ignatius Global School</span>
+            <span>Kabinet 2026/2027</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

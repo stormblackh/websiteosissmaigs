@@ -1,0 +1,1743 @@
+/* ============================================================
+   Orvèlion — OSIS SMA Ignatius Global School · 2026/2027
+   style.css — styling dasar, bersih & tenang; energi logo (macan
+   Orvèlion) ditarik masuk halus lewat emas antik, kontras pekat &
+   garis rust→emas — cukup buat "terasa", tidak berlebihan
+   Palet: #FD8C5A #9C381C #FDB18F #D9530D #FFAE7A #FFD495
+          #F9EDFF #FFE7ED #E6B1B5 #C79A5B (emas antik)
+   ============================================================ */
+
+:root {
+  --bg:        #FFF9F5;   /* latar hangat sangat lembut */
+  --surface:   #FFFFFF;
+  --ink:       #2A1C14;   /* teks utama — coklat pekat, kontras lebih gagah */
+  --ink-soft:  #8A6A5B;   /* teks redup */
+  --brand:     #9C381C;   /* identitas: judul, logo, footer */
+  --accent:    #D9530D;   /* hover & garis aktif */
+  --tint:      #FFE7ED;   /* panel lembut dari palet */
+  --tint-2:    #F9EDFF;
+  --line:      #F2DCD2;   /* hairline pemisah */
+  --gold:      #C79A5B;   /* emas antik — echo bingkai emas logo macan */
+
+  --maxw: 1080px;
+  --pad-inline: max(24px, calc((100% - 1080px) / 2));
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(255, 212, 149, 0.5); }  /* sapuan emas lembut */
+
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------------- HEADER ---------------- */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  /* realignment: nav dipindah ke tengah optik — logo kiri, sisi kanan
+     diseimbangkan kolom kosong 1fr (elemen lama, cuma berubah posisi) */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 14px var(--pad-inline);
+  background: var(--surface);
+  /* garis energi: hairline rust→emas — echo bingkai logo, tetap halus */
+  border-bottom: 1.5px solid transparent;
+  border-image: linear-gradient(90deg,
+    rgba(156, 56, 28, 0.45), rgba(199, 154, 91, 0.5)) 1;
+}
+
+/* logo + nama kabinet */
+a.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+a.logo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+a.logo strong {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--brand);
+  line-height: 1.2;
+}
+
+a.logo small {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+}
+
+/* navigasi */
+nav.link {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  grid-column: 2;        /* realignment: nav di kolom tengah header */
+  justify-self: center;
+}
+
+nav.link a {
+  position: relative;
+  padding: 6px 2px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--ink);
+  transition: color 0.2s ease-out;
+}
+
+/* garis bawah halus — muncul dari kiri */
+nav.link a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease-out;
+}
+
+nav.link a:hover { color: var(--accent); }
+nav.link a:hover::after { transform: scaleX(1); }
+
+/* halaman yang sedang dibuka */
+nav.link a.active { color: var(--brand); font-weight: 600; }
+nav.link a.active::after { transform: scaleX(1); }
+
+/* ---------------- KONTEN ---------------- */
+
+main.bodys .section {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+/* selang-seling lembut biar section kelihatan terstruktur */
+.section.s2 {
+  max-width: none;
+  padding-inline: var(--pad-inline);
+  background: var(--tint);
+}
+.section.s2 > * { max-width: var(--maxw); margin-inline: auto; }
+
+.section.s3 {
+  background: transparent;
+}
+
+h1, h2 {
+  color: var(--brand);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h1 { font-size: clamp(2.1rem, 5vw, 3rem); font-weight: 800; }
+h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 800; }
+
+.section p { max-width: 62ch; color: var(--ink); }
+
+/* ---------------- HERO (s1 Home) ---------------- */
+
+main.bodys .section.s1 {
+  /* realignment: section jadi kolom flex — hero di atas,
+     strip statistik menempel dasar section */
+  display: flex;
+  flex-direction: column;
+  position: relative;    /* basis untuk awan latar lembut */
+  padding-top: 88px;
+  padding-bottom: 88px;
+}
+
+/* elemen pendukung: awan lembut tema palet (oranye-pink & lavender) —
+   posisi asimetris golden, di belakang konten, nol elemen DOM baru */
+main.bodys .section.s1::before {
+  content: "";
+  position: absolute;
+  top: 4%;
+  right: 0;
+  width: 46%;
+  aspect-ratio: 1.6;
+  background: radial-gradient(closest-side,
+    rgba(255, 231, 237, 0.9), rgba(255, 231, 237, 0) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+main.bodys .section.s1::after {
+  content: "";
+  position: absolute;
+  bottom: 9%;
+  left: 0;
+  width: 40%;
+  aspect-ratio: 1.5;
+  background: radial-gradient(closest-side,
+    rgba(249, 237, 255, 0.85), rgba(249, 237, 255, 0) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero {
+  /* realignment golden split: teks 1.618fr kiri · logo 1fr kanan.
+     Komposisi asimetris proporsional — bukan sekadar pindah center->kiri */
+  display: grid;
+  grid-template-columns: 1.618fr 1fr;
+  column-gap: 56px;
+  align-items: center;
+  margin: 0 0 72px;      /* jarak minimum ke strip statistik di bawah */
+  text-align: left;
+}
+
+/* elemen teks lama tetap satu kolom di kiri */
+.hero > :not(.hero-visual) { grid-column: 1; }
+
+/* ---- elemen pendukung: logo kabinet sebagai jangkar visual hero ---- */
+.hero-visual {
+  grid-column: 2;
+  grid-row: 1 / span 5;   /* sejajar tinggi kolom teks (5 elemen teks) */
+  align-self: center;
+  justify-self: center;
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  /* awan glow hangat di belakang logo — tema palet */
+  background: radial-gradient(circle,
+    rgba(253, 177, 143, 0.46) 0%,
+    rgba(255, 231, 237, 0.18) 42%,
+    rgba(255, 231, 237, 0) 68%);
+}
+
+/* ring luar statis — hairline lembut */
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--line);
+  border-radius: 50%;
+}
+
+/* ring dalam dashed — 61.8% ukuran ring luar (golden), orbit pelan */
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 19%;
+  border: 1.5px dashed var(--gold);   /* ring emas antik — echo ring logo */
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+.hero-visual img {
+  position: relative;
+  z-index: 1;             /* kartu logo melayang di atas ring — kedalaman */
+  width: 62%;             /* golden dari container visual */
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 30px;
+  border: 5px solid #FFFFFF;
+  box-shadow:
+    0 0 0 1.5px rgba(199, 154, 91, 0.55),   /* rim emas — echo bingkai ganda logo */
+    0 30px 60px -30px rgba(156, 56, 28, 0.35),
+    0 8px 20px -10px rgba(156, 56, 28, 0.2);
+}
+
+/* label kecil di atas judul */
+.hero .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+/* elemen pendukung: garis aksen kecil di depan eyebrow (editorial) */
+.hero .eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 36px;
+  height: 2px;
+  margin-right: 12px;
+  vertical-align: middle;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* judul besar — echo wordmark di header */
+.hero .hero-title {
+  /* energi: display lebih besar & rapat — kehadiran tanpa jerit */
+  font-size: clamp(3.2rem, 8vw, 5.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+  text-wrap: balance;
+}
+
+/* "è" disorot emas — satu-satunya huruf beraksen, detail khas nama */
+.hero .hero-title .grave { color: var(--gold); }
+
+/* slogan dalam pill rust+emas — echo lockup footer */
+.hero .hero-slogan {
+  display: block;
+  width: fit-content;
+  margin: 0 0 28px;     /* realignment: pill slogan ikut rata kiri */
+  padding: 8px 20px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: #FFD495;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* kalimat pembuka — sedikit lebih gelap dari ink-soft demi kontras baca */
+.hero .hero-lead {
+  max-width: 52ch;
+  margin-inline: 0;      /* realignment: rata kiri mengikuti kolom hero */
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: rgba(51, 35, 27, 0.85);
+  text-wrap: pretty;
+}
+
+/* tombol aksi: 1 solid + 1 ghost (maks 1 warna kuat) */
+.hero .hero-cta {
+  display: flex;
+  justify-content: flex-start;   /* realignment: tombol rata kiri */
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.hero .hero-cta a {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.hero .hero-cta .btn-solid {
+  background: var(--brand);
+  color: #FFFFFF;
+}
+
+.hero .hero-cta .btn-solid:hover {
+  background: var(--accent);
+  transform: translateY(-2px);   /* micro-lift — percaya diri */
+}
+
+.hero .hero-cta .btn-ghost {
+  border: 2px solid rgba(199, 154, 91, 0.65); /* emas antik — tegas & elegan */
+  background: transparent;
+  color: var(--ink);
+}
+
+.hero .hero-cta .btn-ghost:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+  transform: translateY(-1px);   /* energi: tombol ikut hidup */
+}
+
+/* statistik — realignment: elemen lama dipindah keluar kolom hero,
+   jadi strip melebar penuh di dasar section; pemisah antar angka
+   memakai hairline border (bukan elemen baru) */
+.s1 > .hero-stats {
+  margin-top: auto;      /* menempel dasar section */
+  width: 100%;
+  max-width: none;       /* override .section p 62ch — strip melebar penuh */
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.s1 > .hero-stats > span { flex: 1 1 0; }
+
+/* titik pemisah "·" disembunyikan di desktop — tugasnya digantikan hairline */
+.s1 > .hero-stats > span[aria-hidden="true"] { display: none; }
+
+.s1 > .hero-stats > span:nth-of-type(3),
+.s1 > .hero-stats > span:nth-of-type(5) {
+  border-left: 1px solid var(--line);
+  padding-left: 32px;
+}
+
+.s1 > .hero-stats strong {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+/* masuk sekali, halus — hormati preferensi reduce-motion */
+@media (prefers-reduced-motion: no-preference) {
+  .hero > * { animation: hero-rise 0.38s ease-out both; }
+  .hero > *:nth-child(2) { animation-delay: 0.07s; }
+  .hero > *:nth-child(3) { animation-delay: 0.14s; }
+  .hero > *:nth-child(4) { animation-delay: 0.21s; }
+  .hero > *:nth-child(5) { animation-delay: 0.28s; }
+  .hero > *:nth-child(6) { animation-delay: 0.35s; }   /* logo visual */
+  .s1 > .hero-stats { animation: hero-rise 0.38s ease-out 0.42s both; }
+  /* ring dashed berputar sangat pelan + kartu logo mengapung halus */
+  .hero-visual::after { animation: spin 60s linear infinite; }
+  .hero-visual img { animation: float 7s ease-in-out 0.6s infinite; }
+}
+
+@keyframes spin { to { transform: rotate(1turn); } }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* judul halaman About Us / Event — realignment: elemen h1 lama
+   dipindah ke posisi optik (tengah band 52vh), rata kiri konsisten
+   dengan hero Home. Home tidak kena (h1-nya ada di dalam .hero) */
+main.bodys .section.s1:has(> h1) { min-height: 52vh; }
+main.bodys .section.s1 > h1 { margin-block: auto; }
+
+/* ---------------- S2: MAKNA NAMA (konsep D — wordmark + lorem) ---------------- */
+
+/* eyebrow s2/s3 — echo gaya hero (dash aksen + tracking); hero tak disentuh */
+.s2 .eyebrow, .s3 .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.s2 .eyebrow::before, .s3 .eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 36px;
+  height: 2px;
+  margin-right: 12px;
+  vertical-align: middle;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* wordmark raksasa — statement tipografis section. Serif (Georgia) weight
+   reguler: di ukuran display terbaca elegan & tenang, kontras dengan judul
+   hero yang tebal sans. Huruf "è" — satu-satunya yang beraksen di nama —
+   disorot warna brand (detail khas nama, bukan hiasan karangan) */
+.name-wordmark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;      /* energi: presence lebih gagah, tetap tenang */
+  font-size: clamp(3.6rem, 9vw, 8.25rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.name-wordmark .grave { color: var(--brand); }
+
+/* hairline di bawah wordmark — lebarnya 61.8% (golden): ujung kanannya
+   jatuh persis di awal kolom slogan di bawah (lebar kolom cerita 1.618fr) */
+.name-wordmark::after {
+  content: "";
+  display: block;
+  width: calc((100% - 56px) * 0.618);
+  height: 1.5px;
+  border-radius: 2px;
+  background: #E6B1B5;   /* dusty rose dari palet */
+  margin-top: 26px;
+}
+
+/* golden split 1.618fr : 1fr — echo komposisi hero (sistem yang sama) */
+.name-grid {
+  display: grid;
+  grid-template-columns: 1.618fr 1fr;
+  column-gap: 56px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.name-text p {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: rgba(51, 35, 27, 0.85);
+}
+
+.name-text p + p { margin-top: 18px; }
+
+/* slogan sebagai pull-quote sidebar — elemen pendukung dari user */
+.name-aside {
+  margin-top: 6px;                 /* sejajar optis dengan baris pertama cerita */
+  padding-left: 22px;
+  border-left: 1.5px solid #E6B1B5;
+}
+
+.name-quote {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* ---------------- S3: VISI & MISI (konsep C) ---------------- */
+
+/* golden split yang sama: visi (pull-quote) kiri · misi (indeks) kanan */
+.vm-grid {
+  display: grid;
+  grid-template-columns: 1.618fr 1fr;
+  column-gap: 56px;
+  align-items: start;
+  margin-top: 36px;
+}
+
+/* visi — pernyataan serif italic dengan tanda kutip raksasa samar
+   (ghost) menggantung di kantong kiri atas, gaya pull-quote editorial */
+.vm-visi { position: relative; padding-left: 52px; }
+
+.vm-visi::before {
+  content: "\201C";
+  position: absolute;
+  top: -2.4rem;
+  left: -0.06em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 7rem;
+  line-height: 1;
+  color: var(--line);
+  z-index: -1;                     /* selalu di belakang teks */
+  pointer-events: none;
+}
+
+.visi-quote {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 32ch;
+  text-wrap: pretty;
+}
+
+/* misi — indeks bernomor dengan hairline pemisah, angka kecil warna brand */
+.vm-misi { list-style: none; }
+
+.vm-misi li {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 14px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: rgba(51, 35, 27, 0.85);
+}
+
+.vm-misi li:first-child { border-top: 1px solid var(--line); }
+
+.vm-misi .no {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--brand);
+  padding-top: 4px;                /* sejajar optis baris pertama teks */
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+  background: var(--brand);
+  color: var(--tint);
+  padding: 56px var(--pad-inline) 0;
+  margin-top: 64px;
+}
+
+footer .inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  /* realignment: tiga kolom proporsional tetap (dulu auto 1fr auto
+     — alamat dulu menggantung di tengah) */
+  grid-template-columns: 1.618fr 1.25fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* kolom brand: logo + wordmark + slogan (nyatu dengan pola logo header) */
+footer .ls .logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+footer .ls .logo img {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+footer .ls .logo .brand strong {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+footer .ls .logo .brand .slogan {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.45;
+  color: #FFD495; /* emas lembut dari palet — hangat, tetap terbaca */
+}
+
+/* kolom alamat */
+footer .alamat {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #FFE7ED;
+  justify-self: start;   /* realignment: rata kiri kolomnya (dulu center) */
+  padding-top: 14px;     /* label "Alamat" sejajar optis dgn wordmark */
+}
+
+footer .alamat h3 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 231, 237, 0.75);
+  margin-bottom: 10px;
+}
+
+/* kolom sosmed */
+footer .media {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;     /* realignment: label sejajar optis wordmark */
+}
+
+footer .media h3 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 231, 237, 0.75);
+  margin-bottom: 10px;
+}
+
+footer .media a {
+  position: relative;
+  width: fit-content;
+  text-decoration: none;
+  color: #FFE7ED;
+  font-size: 0.95rem;
+  transition: color 0.2s ease-out;
+}
+
+footer .media a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease-out;
+}
+
+footer .media a:hover { color: #FFFFFF; }
+footer .media a:hover::after { transform: scaleX(1); }
+
+/* baris paling bawah */
+footer .bottom {
+  max-width: var(--maxw);
+  margin: 48px auto 0;
+  padding: 20px 0 24px;
+  border-top: 1px solid rgba(255, 231, 237, 0.22);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: rgba(255, 231, 237, 0.72);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* elemen pendukung: slogan vertikal di tepi kanan layar lebar —
+   memanfaatkan ruang margin container yang memang kosong */
+@media (min-width: 1200px) {
+  body::after {
+    content: "Rise Together · Thrive Forever";
+    position: absolute;
+    top: 24vh;
+    right: 22px;
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    color: rgba(199, 154, 91, 0.85);   /* benang emas di tepi — echo rim logo */
+    pointer-events: none;
+  }
+}
+
+/* layar sempit: hero jadi satu kolom — logo tampil di bawah teks */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-visual {
+    grid-row: auto;
+    grid-column: 1;
+    width: min(64%, 230px);
+    margin-top: 48px;
+  }
+  .name-grid, .vm-grid { grid-template-columns: 1fr; row-gap: 40px; }
+  .name-aside { margin-top: 4px; }
+}
+
+@media (max-width: 720px) {
+  /* realignment HP: header kembali 2 baris (logo + nav spread penuh) */
+  header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    padding-block: 12px;
+  }
+  nav.link { gap: 18px; width: 100%; justify-content: space-between; }
+  nav.link a { flex: 1; text-align: center; }
+
+  main.bodys .section { padding: 64px 20px; }
+
+  /* hero di HP: lebih ringkas, tombol full-width */
+  main.bodys .section.s1 { padding-top: 64px; padding-bottom: 64px; }
+  main.bodys .section.s1:has(> h1) { min-height: 44vh; }
+  .hero { margin-bottom: 40px; }
+  .hero .hero-slogan { font-size: 0.95rem; }
+  .hero .hero-cta a { flex: 1 1 auto; min-width: 170px; padding: 12px 22px; }
+  .hero-visual { width: min(56%, 200px); margin-top: 28px; }
+
+  /* strip statistik di HP: kembali jadi baris ringkas dgn titik pemisah */
+  .s1 > .hero-stats { flex-wrap: wrap; gap: 4px 12px; padding-top: 20px; font-size: 0.85rem; }
+  .s1 > .hero-stats > span { flex: 0 1 auto; }
+  .s1 > .hero-stats > span[aria-hidden="true"] { display: inline; }
+  .s1 > .hero-stats > span:nth-of-type(3),
+  .s1 > .hero-stats > span:nth-of-type(5) { border-left: none; padding-left: 0; }
+
+  footer .inner {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+  footer .alamat { justify-self: start; padding-top: 0; }
+  footer .media { padding-top: 0; }
+
+  /* s2/s3 di HP: split golden stack, ghost & padding dirapatkan */
+  .vm-visi { padding-left: 40px; }
+  .vm-visi::before { font-size: 5.5rem; top: -1.7rem; }
+  .name-aside { padding-left: 18px; }
+  .vm-misi li { grid-template-columns: 34px 1fr; column-gap: 12px; }
+  .name-grid { row-gap: 48px; }
+  .vm-grid { row-gap: 40px; }
+  .name-wordmark::after { margin-top: 28px; }
+}
+
+/* ============================================================
+   PJAX & MOTION — pendamping script.js
+   Progressive enhancement: class .js di <html> dipasang script.js
+   saat load. Tanpa JS, semua section tampil normal & navigasi
+   tetap jalan seperti biasa (tidak ada konten yang disembunyikan).
+   ============================================================ */
+
+/* dasar transisi swap halaman — cepat & halus, ~160ms */
+html.js main.bodys {
+  transition: opacity 0.16s ease-out, transform 0.16s ease-out;
+}
+
+/* keluar: konten merunduk + memudar sekejap sebelum ditukar */
+html.js main.bodys.pjax-leave {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* masuk: mulai transparan (tanpa transisi), dilepas script di
+   frame berikutnya → memudar masuk kembali normal */
+html.js main.bodys.pjax-enter {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: none;
+}
+
+/* reveal halus section bawah (s2/s3) saat digulir — sekali saja.
+   Class .in dipasang IntersectionObserver di script.js */
+@media (prefers-reduced-motion: no-preference) {
+  html.js main.bodys .section:not(.s1) {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  html.js main.bodys .section:not(.s1).in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+}
+
+/* hormati preferensi reduce-motion: tanpa gerakan apa pun */
+@media (prefers-reduced-motion: reduce) {
+  html.js main.bodys,
+  html.js main.bodys.pjax-leave,
+  html.js main.bodys.pjax-enter {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html.js main.bodys .section:not(.s1) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   EVENT BOARD & DETAIL OVERLAY — pendamping script.js
+   Kartu = tiket mini (banner + tanggal + status). Klik →
+   overlay detail yang "tumbuh" dari kartu (FLIP). Detail
+   tetap HTML asli di folder event/ — bisa di-share & ke-index.
+   ============================================================ */
+
+/* ---------------- kepala halaman Event ---------------- */
+
+.page-head {
+  min-height: 42vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.page-head h1 { margin-bottom: 18px; }
+
+/* eyebrow di kepala halaman — echo gaya hero (dash aksen + tracking) */
+.page-head .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.page-head .eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 36px;
+  height: 2px;
+  margin-right: 12px;
+  vertical-align: middle;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.page-lead {
+  max-width: 56ch;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: rgba(51, 35, 27, 0.85);
+}
+
+/* ---------------- papan: label grup + grid ---------------- */
+
+.section.ev-board { padding-block: 40px 88px; }
+
+.ev-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 52px 0 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--brand);
+}
+.ev-label::after {
+  content: "";
+  flex: 1;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--line);
+}
+.ev-board .ev-label:first-child { margin-top: 0; }
+
+.ev-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+/* ---------------- arsip dokumentasi: list kegiatan selesai ----------------
+   Gaya arsip situs lama (nama + tanggal) yang dirapikan: hairline antar
+   baris, indeks serif, panah aksen muncul saat hover. Klik → overlay. */
+.ev-arch {
+  margin-bottom: 28px;
+}
+.ev-row {
+  display: grid;
+  grid-template-columns: 3.1rem minmax(0, 1fr) auto 1.4rem;
+  align-items: baseline;
+  column-gap: 16px;
+  padding: 16px 10px;
+  border-bottom: 1.5px solid var(--line);
+  text-decoration: none;
+  scroll-margin-top: 96px;
+  transition: background-color 0.2s ease-out, padding-left 0.2s ease-out;
+}
+.ev-arch .ev-row:first-child { border-top: 1.5px solid var(--line); }
+.ev-row:hover {
+  background: rgba(255, 231, 237, 0.5);
+  padding-left: 18px;
+}
+.ev-row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  background: rgba(255, 231, 237, 0.5);
+}
+.ev-row-idx {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--brand);
+  opacity: 0.6;
+}
+.ev-row-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.ev-row-date {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: rgba(42, 28, 20, 0.55);
+  white-space: nowrap;
+}
+.ev-row-arrow {
+  font-size: 1rem;
+  color: var(--ev-accent, var(--accent));
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+.ev-row:hover .ev-row-arrow,
+.ev-row:focus-visible .ev-row-arrow {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------------- kartu tiket (klik → overlay) ---------------- */
+
+.ev-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  /* bingkai emas ganda — echo squircle logo */
+  outline: 1px solid rgba(199, 154, 91, 0.4);
+  outline-offset: 5px;
+  /* jarak aman saat scroll-into-view — gak ketutup header sticky */
+  scroll-margin-top: 96px;
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out,
+              border-color 0.25s ease-out;
+}
+.ev-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 24px 48px -28px rgba(156, 56, 28, 0.32);
+}
+.ev-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.ev-card.is-live {
+  border-color: rgba(199, 154, 91, 0.55);
+  box-shadow: 0 22px 44px -26px rgba(156, 56, 28, 0.28);
+}
+
+/* banner kartu + garis perforasi tiket di bawahnya */
+.ev-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-bottom: 1.5px dashed var(--line);
+}
+
+/* ---------------- placeholder logo → banner fade-in ----------------
+   Selama banner masih loading: latar krem lembut + logo samar di
+   tengah (url() relatif ke style.css → aman dari folder event/).
+   Begitu gambar siap, script.js pasang .img-in → banner fade-in
+   dan LOGO OTOMATIS DIHAPUS (ringkas, gak berat). Tanpa JS:
+   gambar tetap tampil normal. */
+
+[data-lz] {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #FFF3EA, #FFE7ED 55%, #F9EDFF);
+}
+[data-lz]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: url("Img/Logo.jpeg") center / 60px no-repeat;
+  opacity: 0.3;
+  /* logo "bernapas" pelan — sinyal jelas bahwa foto masih loading */
+  animation: lz-breathe 1.8s ease-in-out infinite;
+  transition: opacity 0.3s ease-out;
+}
+@keyframes lz-breathe {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.12; }
+}
+/* gambar siap / gagal → hentikan napas placeholder */
+[data-lz].img-in::before,
+[data-lz].img-err::before { animation: none; }
+[data-lz] > img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.45s ease-out, transform 0.6s ease-out;
+}
+[data-lz].img-in::before { opacity: 0; background-image: none; }
+[data-lz].img-in > img   { opacity: 1; transform: none; }
+[data-lz].img-err > img  { display: none; }
+
+/* ---------------- badge status ---------------- */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+.badge.is-live {
+  background: var(--brand);
+  color: #FFE7ED;
+  box-shadow: 0 8px 18px -10px rgba(156, 56, 28, 0.5);
+}
+.badge.is-live .dot {
+  /* titik emas berdenyut — "mata macan" */
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #FFD495;
+  animation: ev-pulse 2s ease-in-out infinite;
+}
+.badge.is-soon {
+  background: rgba(255, 232, 200, 0.92);
+  color: var(--brand);
+  border: 1.5px solid var(--gold);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.badge.is-done {
+  background: rgba(255, 249, 245, 0.9);
+  color: var(--ink-soft);
+  border: 1.5px solid rgba(138, 106, 91, 0.45);
+}
+.ev-thumb .badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+}
+
+@keyframes ev-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* ---------------- body kartu ---------------- */
+
+.ev-card-body { padding: 18px 20px 20px; }
+
+.ev-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.28rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.ev-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.ev-meta .ev-date { color: var(--ev-accent, var(--accent)); font-weight: 700; }
+.ev-meta .ev-dot   { color: rgba(42, 28, 20, 0.25); }
+
+/* kartu LIVE = fitur horizontal melebar penuh */
+.ev-card.is-feature {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+}
+.ev-card.is-feature .ev-thumb { aspect-ratio: auto; height: 100%; min-height: 250px; }
+.ev-card.is-feature .ev-card-body { align-self: center; padding: 28px 32px; }
+.ev-card.is-feature .ev-name { font-size: clamp(1.45rem, 2.6vw, 1.9rem); }
+
+/* riwayat: energi diredam */
+.ev-card.is-done { opacity: 0.88; }
+.ev-card.is-done .ev-thumb > img { filter: saturate(0.6) contrast(0.96); }
+.ev-card.is-done .ev-name { color: rgba(51, 35, 27, 0.62); }
+.ev-card.is-done:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--line);
+}
+
+/* catatan kaki papan */
+.ev-footnote {
+  margin-top: 8px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(226, 177, 181, 0.5);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* ---------------- umpan balik "sedang membuka" ----------------
+   Saat HTML detail masih di-fetch, script.js pasang .is-opening di
+   elemen yang diklik: shimmer menyapu banner kartu / tile galeri,
+   baris arsip & item pendaftaran berubah latar. Class dilepas
+   otomatis begitu overlay terbuka — klik gak pernah terasa "mati". */
+.ev-card.is-opening { border-color: var(--gold); }
+.ev-card.is-opening .ev-thumb { overflow: hidden; }
+.ev-card.is-opening .ev-thumb::after,
+.ev-gcard.is-opening .ev-gthumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 249, 245, 0.55) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: ev-sweep 1.1s ease-in-out infinite;
+}
+@keyframes ev-sweep { 100% { transform: translateX(100%); } }
+
+.ev-row.is-opening { background: rgba(255, 231, 237, 0.6); padding-left: 18px; }
+.ev-row.is-opening .ev-row-name { color: var(--brand); }
+
+/* ---------------- pendaftaran lomba (papan) ----------------
+   Baris lomba yang daftarnya masih buka — echo gaya arsip tapi lebih
+   kaya: nama + kategori, batas waktu, pill CTA. Klik → overlay detail
+   (atau Google Form kalau nanti href diganti ke URL eksternal). */
+.ev-regboard {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.ev-regitem {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 20px;
+  padding: 18px 22px;
+  background: var(--surface);
+  border: 1.5px solid rgba(199, 154, 91, 0.55);
+  border-radius: 16px;
+  outline: 1px solid rgba(199, 154, 91, 0.35);
+  outline-offset: 4px;
+  box-shadow: 0 14px 30px -24px rgba(156, 56, 28, 0.25);
+  text-decoration: none;
+  scroll-margin-top: 96px;
+  transition: transform 0.25s ease-out, border-color 0.25s ease-out,
+              box-shadow 0.25s ease-out, background-color 0.25s ease-out;
+}
+.ev-regitem:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 22px 40px -26px rgba(156, 56, 28, 0.35);
+}
+.ev-regitem:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ev-regitem.is-opening {
+  background: rgba(255, 231, 237, 0.5);
+  border-color: var(--gold);
+}
+.ev-reg-idx {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--brand);
+  opacity: 0.6;
+}
+.ev-reg-main { display: grid; gap: 4px; }
+.ev-reg-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.ev-reg-meta {
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.ev-reg-side {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+.ev-reg-deadline {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ev-accent, var(--accent));
+  white-space: nowrap;
+}
+.ev-reg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: var(--ev-accent, var(--brand));
+  color: #FFF9F5;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.ev-reg-arrow { transition: transform 0.2s ease-out; }
+.ev-regitem:hover .ev-reg-arrow,
+.ev-regitem:focus-visible .ev-reg-arrow { transform: translateX(4px); }
+.ev-regitem.is-opening .ev-reg-arrow {
+  animation: ev-nudge 0.7s ease-in-out infinite alternate;
+}
+@keyframes ev-nudge { to { transform: translateX(5px); } }
+
+/* ---------------- galeri kegiatan (papan) ----------------
+   Tile foto dokumentasi event selesai; klik → detail event pemilik
+   foto. Caption muncul saat hover/fokus; di layar sentuh caption
+   selalu tampil biar ketahuan fotonya punya event mana. */
+.ev-gal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.ev-gcard {
+  position: relative;
+  display: block;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  outline: 1px solid rgba(199, 154, 91, 0.35);
+  outline-offset: 4px;
+  text-decoration: none;
+  scroll-margin-top: 96px;
+  transition: transform 0.25s ease-out, border-color 0.25s ease-out,
+              box-shadow 0.25s ease-out;
+}
+.ev-gcard:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 20px 38px -24px rgba(156, 56, 28, 0.32);
+}
+.ev-gcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.ev-gcard.is-opening { border-color: var(--gold); }
+.ev-gthumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.ev-gcard:hover .ev-gthumb > img { transform: scale(1.045); }
+.ev-gcap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 30px 14px 11px;
+  background: linear-gradient(to top, rgba(42, 28, 20, 0.82), transparent);
+  color: #FFF9F5;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+.ev-gcard:hover .ev-gcap,
+.ev-gcard:focus-visible .ev-gcap,
+.ev-gcard.is-opening .ev-gcap { opacity: 1; transform: none; }
+@media (hover: none) {
+  .ev-gcap { opacity: 1; transform: none; }
+}
+
+/* hormati pengguna yang minta gerakan dikurangi */
+@media (prefers-reduced-motion: reduce) {
+  [data-lz]::before,
+  .ev-card.is-opening .ev-thumb::after,
+  .ev-gcard.is-opening .ev-gthumb::after,
+  .ev-regitem.is-opening .ev-reg-arrow { animation: none; }
+}
+
+/* ---------------- OVERLAY DETAIL (layer PJAX) ---------------- */
+
+.ev-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 3vw, 28px);
+}
+.ev-layer[hidden] { display: none; }
+
+.ev-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(34, 20, 13, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+.ev-layer.on .ev-scrim { opacity: 1; }
+
+body.ev-lock { overflow: hidden; }
+
+.ev-panel {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: 100%;
+  background: var(--surface);
+  border: 1px solid rgba(199, 154, 91, 0.5);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 48px 96px -32px rgba(50, 18, 6, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+.ev-panel.is-anim {
+  transition: transform 0.34s cubic-bezier(0.22, 0.68, 0.32, 1),
+              opacity 0.28s ease-out;
+}
+
+/* scroll di dalam panel — tombol ✕ tetap diam di tempat */
+.ev-panel-scroll {
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  border-radius: inherit;
+}
+
+.ev-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(199, 154, 91, 0.75);
+  border-radius: 50%;
+  background: rgba(42, 28, 20, 0.62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 16px rgba(42, 28, 20, 0.28);
+  color: #FFF9F5;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out,
+              transform 0.25s ease-out;
+}
+.ev-close:hover {
+  background: var(--brand);
+  color: #FFE7ED;
+  transform: rotate(90deg);
+}
+.ev-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------------- ISI DETAIL (.ev-detail) ----------------
+   Markup sama dipakai di dua tempat:
+   · overlay  → di dalam .ev-panel-scroll (tanpa bingkai)
+   · halaman penuh (dibuka langsung / tanpa JS) → .evd-page
+   Warna aksen per event: --ev-accent diset inline di artikel. */
+
+.evd-banner {
+  aspect-ratio: 16 / 8;
+  min-height: 230px;
+  border-bottom: 1.5px dashed var(--line);
+}
+.evd-banner .badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+}
+
+.evd-content { padding: clamp(22px, 4vw, 34px); }
+
+.evd-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ev-accent, var(--accent));
+}
+.evd-eyebrow::before {
+  content: "";
+  width: 36px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.evd-title {
+  margin: 12px 0;
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.evd-lead {
+  max-width: 58ch;
+  font-size: 1.03rem;
+  line-height: 1.75;
+  color: rgba(51, 35, 27, 0.85);
+}
+
+/* grid info praktis: tanggal · jam · lokasi · HTM */
+.evd-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin: 26px 0 4px;
+}
+.evd-tile {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  background: #FFFDFB;
+}
+.evd-tile .evd-th {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ev-accent, var(--accent));
+}
+.evd-tile .evd-th svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.evd-tile p { font-size: 0.95rem; font-weight: 600; color: var(--ink); line-height: 1.5; }
+
+/* heading kecil dalam detail — echo .ev-label */
+.evd-h {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 30px 0 16px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--brand);
+}
+.evd-h::after {
+  content: "";
+  flex: 1;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+.evd-desc p {
+  max-width: 62ch;
+  font-size: 0.99rem;
+  line-height: 1.8;
+  color: rgba(51, 35, 27, 0.85);
+}
+.evd-desc p + p { margin-top: 13px; }
+
+.evd-desc ul {
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.evd-desc li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(51, 35, 27, 0.85);
+}
+.evd-desc li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: var(--ev-accent, var(--accent));
+  opacity: 0.55;
+}
+
+/* ---------------- pendaftaran lomba ----------------
+   Hanya dirender untuk event BERLANGSUNG yang punya lomba (blok .evd-reg
+   dari generator). CTA mengikuti warna aksen event. */
+.evd-reg {
+  margin-top: 26px;
+  padding: 20px 22px;
+  border: 1.5px solid var(--line);
+  border-left: 3px solid var(--ev-accent, var(--accent));
+  border-radius: 14px;
+  background: rgba(255, 231, 237, 0.32);
+}
+.evd-reg .evd-h { margin: 0 0 12px; }
+.evd-reg-note {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: rgba(51, 35, 27, 0.88);
+}
+.evd-reg-list {
+  margin: 14px 0 18px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+.evd-reg-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: rgba(51, 35, 27, 0.85);
+}
+.evd-reg-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: var(--ev-accent, var(--accent));
+  opacity: 0.55;
+}
+.evd-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 24px;
+  width: fit-content;
+  border-radius: 999px;
+  background: var(--ev-accent, var(--brand));
+  color: #FFF9F5;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.evd-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px -12px rgba(156, 56, 28, 0.4);
+}
+.evd-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.evd-cp {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(42, 28, 20, 0.6);
+}
+
+/* galeri 3 foto */
+.evd-gal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 14px;
+}
+.evd-gal-grid > div {
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+/* link kembali — hanya relevan saat dibuka sebagai halaman penuh */
+.evd-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 11px 22px;
+  width: fit-content;
+  border: 1.5px solid rgba(199, 154, 91, 0.65);
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--brand);
+  transition: background-color 0.2s ease-out, color 0.2s ease-out,
+              border-color 0.2s ease-out;
+}
+.evd-back:hover {
+  background: var(--brand);
+  color: #FFE7ED;
+  border-color: var(--brand);
+}
+
+/* di dalam overlay, tombol ✕ sudah ada — back link disembunyikan */
+.ev-panel .evd-back { display: none; }
+
+/* dibuka langsung (tanpa overlay): artikel diberi bingkai kartu */
+.section.evd-page { padding-block: 56px 88px; }
+.evd-page .ev-detail {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  outline: 1px solid rgba(199, 154, 91, 0.4);
+  outline-offset: 5px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+/* ---------------- responsive event ---------------- */
+
+@media (max-width: 860px) {
+  /* fitur LIVE ikut stack jadi vertikal seperti kartu lain */
+  .ev-card.is-feature { grid-template-columns: 1fr; }
+  .ev-card.is-feature .ev-thumb { aspect-ratio: 16 / 10; height: auto; min-height: 0; }
+  .ev-card.is-feature .ev-card-body { padding: 18px 20px 20px; }
+}
+
+@media (max-width: 720px) {
+  .page-head { min-height: 36vh; }
+  .section.ev-board { padding-block: 32px 64px; }
+  .ev-label { margin: 40px 0 20px; }
+  .ev-grid { gap: 18px; margin-bottom: 22px; }
+  .ev-card { outline-offset: 4px; }
+
+  .ev-row { grid-template-columns: 2.3rem minmax(0, 1fr) auto; padding: 14px 4px; }
+  .ev-row:hover { padding-left: 10px; }
+  .ev-row-arrow { display: none; }
+  .ev-row-name { font-size: 0.95rem; }
+  .ev-row-date { font-size: 0.78rem; }
+  .evd-reg { padding: 16px; }
+  .evd-banner { aspect-ratio: 16 / 11; min-height: 200px; }
+  .ev-panel { border-radius: 18px; }
+  .evd-page .ev-detail { border-radius: 18px; }
+
+  /* pendaftaran lomba: judul full-width di atas, batas waktu + CTA
+     jadi satu baris rata di bawahnya (nama gak kebagian sempit) */
+  .ev-regitem {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 16px;
+    row-gap: 12px;
+  }
+  .ev-reg-idx { display: none; }
+  .ev-reg-main { grid-column: 1 / -1; }
+  .ev-reg-side {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .ev-reg-deadline { white-space: normal; }
+  .ev-reg-btn { padding: 8px 14px; font-size: 0.8rem; flex-shrink: 0; }
+
+  /* galeri: tile lebih kecil biar 2 kolom di layar HP */
+  .ev-gal { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .ev-gcard { outline-offset: 3px; }
+}
