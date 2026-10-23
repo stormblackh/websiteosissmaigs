@@ -1038,7 +1038,7 @@ html.js main.bodys.pjax-enter {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: url("Img/Logo.jpeg") center / 60px no-repeat;
+  background: url("https://res.cloudinary.com/sqrnkq7x/image/upload/f_auto,q_auto/Logo.jpeg") center / 60px no-repeat;
   opacity: 0.3;
   /* logo "bernapas" pelan — sinyal jelas bahwa foto masih loading */
   animation: lz-breathe 1.8s ease-in-out infinite;
