@@ -1,0 +1,16 @@
+{
+  "name": "orvelion-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website OSIS SMA Ignatius Global School (Orvèlion) — frontend statis + API serverless Vercel + MongoDB Atlas + Cloudinary",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.16.0"
+  }
+}

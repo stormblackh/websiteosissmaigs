@@ -1,0 +1,8 @@
+# Jangan pernah commit node_modules, .env, atau config Vercel lokal.
+node_modules/
+.env
+.vercel/
+
+# File & folder sistem
+.DS_Store
+Thumbs.db
