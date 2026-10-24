@@ -4,7 +4,7 @@
   "private": true,
   "description": "Website OSIS SMA Ignatius Global School (Orvèlion) — frontend statis + API serverless Vercel + MongoDB Atlas + Cloudinary",
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "scripts": {
     "seed": "node seed.js"
