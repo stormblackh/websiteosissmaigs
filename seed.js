@@ -18,7 +18,8 @@ const data = require('./data/events');
 (async () => {
   if (!process.env.MONGODB_URI) {
     console.error('MONGODB_URI belum ada.');
-    console.error('Isi dulu di file .env — caranya ada di docs/ROADMAP-ARSITEKTUR.md §3.');
+    console.error('Isi dulu di file .env — connection string-nya ambil dari');
+    console.error('MongoDB Atlas (Cluster → Connect → Drivers), lalu jalankan lagi.');
     process.exit(1);
   }
 

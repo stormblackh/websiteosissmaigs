@@ -13,9 +13,9 @@ views/               ← template halaman (dirender oleh server.js)
   ├─ layout.js       ← shell: <head>, header nav, footer
   ├─ home.js about.js board.js detail.js   ← isi tiap halaman
   └─ cdn.js          ← konstanta URL Cloudinary
+script.js style.css                        ← aset statis (di-serve langsung oleh Express)
 data/events.js       ← SEMUA konten event (single source of truth)
 lib/db.js models/Event.js seed.js           ← lapisan MongoDB (opsional)
-script.js style.css Img/                    ← aset statis (di-serve CDN)
 ```
 
 ## URL
@@ -51,10 +51,7 @@ otomatis (semua dirender dari situ). Kalau udah nyambung MongoDB: jalanin
 - Foto semua di Cloudinary (`f_auto` WebP/AVIF). Ganti foto = upload nama sama
   di Media Library. Ganti akun Cloudinary = edit `CLOUD` di `views/cdn.js`.
 
-## Migrasi full Node.js (sekali saja, sudah selesai di repo ini)
+## Deploy
 
-1. `git mv` lama → semua file `.html` dihapus; halaman dirender `server.js`.
-2. Di komputer kamu setelah ekstrak zip: jalankan `update-nodejs.bat` (Windows)
-   atau `update-nodejs.command` (Mac/Linux) — zip tidak menghapus file lama,
-   helper ini yang ngapus sisanya biar gak ikut ke-deploy.
-3. `git add -A && git commit && git push` — Vercel auto-deploy.
+Migrasi full Node.js sudah selesai di repo ini. Alur pembaruan:
+`git add -A && git commit && git push` — Vercel auto-deploy.

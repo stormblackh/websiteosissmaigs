@@ -11,9 +11,13 @@ module.exports = function home() {
                 <p class="eyebrow">OSIS SMA IGS · 2026/2027</p>
                 <h1 class="hero-title">Orv<span class="grave">è</span>lion</h1>
                 <p class="hero-slogan">Rise Together, Thrive forever</p>
+                <!-- GANTI-LEAD: lorem placeholder — ganti dengan deskripsi
+                     singkat situs (kalimat asli versi English disimpan di
+                     riwayat git commit 5e51cc0). -->
                 <p class="hero-lead">
-                    Where you'll find every agenda, story, and the people
-                    behind OSIS SMA Ignatius Global School this year.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua ut enim ad minim veniam.
                 </p>
                 <div class="hero-cta">
                     <a class="btn-solid" href="/event">See Events →</a>
@@ -60,39 +64,40 @@ module.exports = function home() {
             </div>
         </div>
         <div class="section s3">
-            <!-- GANTI-VISI-MISI: teks visi & 4 poin misi di bawah masih DRAF.
-                 Ganti dengan visi & misi resmi kabinet kamu. -->
+            <!-- GANTI-VISI-MISI: teks visi & 4 poin misi di bawah lorem
+                 placeholder. Ganti dengan visi & misi resmi kabinet kamu
+                 (versi English awal disimpan di riwayat git 5e51cc0). -->
             <p class="eyebrow">02 · Cabinet Foundation</p>
             <h2>Vision &amp; Mission</h2>
             <div class="vm-grid">
                 <div class="vm-visi">
                     <blockquote class="visi-quote">
-                        To be a home for every student of SMA Ignatius Global School —
-                        a place where ideas are heard, talents are honed, and
-                        differences are celebrated; a student council that shows up
-                        for everyone, not just a few.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua — ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip.
                     </blockquote>
                 </div>
                 <ol class="vm-misi">
                     <li>
                         <span class="no">01</span>
-                        <span class="tx">Building a culture where every student dares
-                        to voice their ideas — and those ideas turn into real action.</span>
+                        <span class="tx">Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit, sed do eiusmod tempor incididunt ut labore.</span>
                     </li>
                     <li>
                         <span class="no">02</span>
-                        <span class="tx">Delivering school events with character:
-                        not just lively, but ones that leave a lasting mark.</span>
+                        <span class="tx">Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea commodo.</span>
                     </li>
                     <li>
                         <span class="no">03</span>
-                        <span class="tx">Nurturing togetherness across classes, divisions,
-                        and batches through work that is open and honest.</span>
+                        <span class="tx">Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
                     </li>
                     <li>
                         <span class="no">04</span>
-                        <span class="tx">Keeping the student council close to students,
-                        trusted by the school, and beneficial for everyone.</span>
+                        <span class="tx">Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim.</span>
                     </li>
                 </ol>
             </div>
