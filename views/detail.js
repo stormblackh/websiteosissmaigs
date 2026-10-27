@@ -113,13 +113,18 @@ module.exports = function detail(ev) {
   const isLive = ev.status === 'live';
   const lomba = isLive && ev.lomba && (ev.lomba.items || []).length ? ev.lomba : null;
 
+  /* foto banner opsional — event tanpa banner (mis. mode dummy) → gak ada
+     <img> sama sekali, placeholder krem + logo samar dari CSS tetap tampil,
+     badge Live/Selesai tetap ada */
+  const bannerImg = ev.banner && ev.banner.id ? `
+                    <img src="${RAW(ev.banner.id)}"
+                         alt="${esc(ev.banner.alt)}" width="1200" height="675"
+                         loading="eager" fetchpriority="high" decoding="async">` : '';
+
   return `
         <div class="section evd-page">
             <article class="ev-detail" style="--ev-accent:${esc(ev.accent)}">
-                <div class="evd-banner" data-lz>
-                    <img src="${RAW(ev.banner.id)}"
-                         alt="${esc(ev.banner.alt)}" width="1200" height="675"
-                         loading="eager" fetchpriority="high" decoding="async">
+                <div class="evd-banner" data-lz>${bannerImg}
                     ${isLive
                       ? '<span class="badge is-live"><span class="dot"></span>Live</span>'
                       : '<span class="badge is-done">Selesai</span>'}

@@ -29,6 +29,14 @@ module.exports = function board(events) {
   const live = list.find((e) => e.status === 'live') || null;
   const done = list.filter((e) => e !== live);
 
+  /* foto banner opsional — event tanpa banner (mis. mode dummy) → gak ada
+     <img> sama sekali, placeholder krem + logo samar dari CSS tetap tampil */
+  const liveBannerImg = live && live.banner && live.banner.id ? `
+                        <img src="${RAW(live.banner.id)}"
+                             alt="${esc(live.banner.alt)}"
+                             width="1200" height="675" loading="eager"
+                             fetchpriority="high" decoding="async">` : '';
+
   /* ---- keadaan 1: kartu live ---- */
   const liveBlock = live ? `
         <p class="ev-label">Sedang Berlangsung</p>
@@ -37,11 +45,7 @@ module.exports = function board(events) {
                      statusnya jadi 'done' di data/events.js (otomatis pindah
                      ke "Dokumentasi" + galeri) -->
                 <a class="ev-card is-live is-feature" href="/event/${esc(live.slug)}" style="--ev-accent:${esc(live.accent)}">
-                    <div class="ev-thumb" data-lz>
-                        <img src="${RAW(live.banner.id)}"
-                             alt="${esc(live.banner.alt)}"
-                             width="1200" height="675" loading="eager"
-                             fetchpriority="high" decoding="async">
+                    <div class="ev-thumb" data-lz>${liveBannerImg}
                         <span class="badge is-live"><span class="dot"></span>Live</span>
                     </div>
                     <div class="ev-card-body">
