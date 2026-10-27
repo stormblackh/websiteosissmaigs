@@ -1,13 +1,13 @@
 /* Papan Event (/event) — isi <main>, dirender dari data/events.js.
    ----------------------------------------------------------------------------
    Aturan papan (kebiasaan situs lama Ardraxis) — dijaga di sini:
-   · "Sedang Berlangsung" HANYA berisi SATU event pada satu waktu (status
+   · "Happening Now" HANYA berisi SATU event pada satu waktu (status
      'live'). Event berikutnya naik BEGITU event sebelumnya selesai (status
-     diganti jadi 'done' → otomatis pindah ke "Dokumentasi" + galeri).
+     diganti jadi 'done' → otomatis pindah ke "Documentation" + galeri).
    · Event SEGERA/upcoming TIDAK pernah naik ke papan.
    · Lomba itu BAGIAN dari event (gak semua event punya) — pintu masuknya
-     baris "Pendaftaran Lomba" (hanya muncul kalau event live punya lomba);
-     kotak lomba lengkapnya ada di halaman detail.
+     baris "Competition Registration" (hanya muncul kalau event live punya
+     lomba); kotak lomba lengkapnya ada di halaman detail.
    Cara ganti isi papan: edit data/events.js (bukan file ini). */
 
 const { esc } = require('./layout');
@@ -39,11 +39,11 @@ module.exports = function board(events) {
 
   /* ---- keadaan 1: kartu live ---- */
   const liveBlock = live ? `
-        <p class="ev-label">Sedang Berlangsung</p>
+        <p class="ev-label">Happening Now</p>
             <div class="ev-grid">
                 <!-- SATU event live dalam satu waktu — begitu selesai, ubah
                      statusnya jadi 'done' di data/events.js (otomatis pindah
-                     ke "Dokumentasi" + galeri) -->
+                     ke "Documentation" + galeri) -->
                 <a class="ev-card is-live is-feature" href="/event/${esc(live.slug)}" style="--ev-accent:${esc(live.accent)}">
                     <div class="ev-thumb" data-lz>${liveBannerImg}
                         <span class="badge is-live"><span class="dot"></span>Live</span>
@@ -60,13 +60,13 @@ module.exports = function board(events) {
   /* ---- keadaan 2: baris pendaftaran lomba (kalau event live punya) ---- */
   const reg = live && live.lomba && live.lomba.items && live.lomba.items.length ? live.lomba : null;
   const regBlock = reg ? `
-            <p class="ev-label">Pendaftaran Lomba</p>
+            <p class="ev-label">Competition Registration</p>
             <div class="ev-regboard">
-                <!-- baris ini nyambung ke blok "Pendaftaran Lomba" di halaman
-                     detail. Kalau link form tiap lomba udah siap, tinggal ganti
-                     field 'link' di data/events.js (tombol "Daftar Sekarang"
-                     di halaman detail bakal langsung bener). Nambah lomba =
-                     tambah item di lomba.items[]. -->
+                <!-- baris ini nyambung ke blok "Competition Registration"
+                     di halaman detail. Kalau link form tiap lomba udah siap,
+                     tinggal ganti field 'link' di data/events.js (tombol
+                     "Register Now" di halaman detail bakal langsung bener).
+                     Nambah lomba = tambah item di lomba.items[]. -->
                 <a class="ev-regitem" href="/event/${esc(live.slug)}" style="--ev-accent:${esc(live.accent)}">
                     <span class="ev-reg-idx">01</span>
                     <span class="ev-reg-main">
@@ -74,8 +74,8 @@ module.exports = function board(events) {
                         <span class="ev-reg-meta">${esc(reg.bidangPapan)}</span>
                     </span>
                     <span class="ev-reg-side">
-                        <span class="ev-reg-deadline">Batas: <strong>${esc(reg.deadlinePendek)}</strong></span>
-                        <span class="ev-reg-btn">Detail &amp; Daftar<span class="ev-reg-arrow" aria-hidden="true">→</span></span>
+                        <span class="ev-reg-deadline">Deadline: <strong>${esc(reg.deadlinePendek)}</strong></span>
+                        <span class="ev-reg-btn">Details &amp; Register<span class="ev-reg-arrow" aria-hidden="true">→</span></span>
                     </span>
                 </a>
             </div>` : '';
@@ -89,7 +89,7 @@ module.exports = function board(events) {
                     <span class="ev-row-arrow" aria-hidden="true">→</span>
                 </a>`).join('\n');
   const doneBlock = done.length ? `
-            <p class="ev-label">Dokumentasi</p>
+            <p class="ev-label">Documentation</p>
             <div class="ev-arch">${rows}
             </div>` : '';
 
@@ -103,15 +103,15 @@ module.exports = function board(events) {
                     <span class="ev-gcap">${esc(e.judul)}</span>
                 </a>`)).join('');
   const galBlock = tiles ? `
-            <p class="ev-label">Galeri Kegiatan</p>
+            <p class="ev-label">Event Gallery</p>
             <div class="ev-gal">${tiles}
             </div>
-            <p class="ev-footnote">Galeri diperbarui setelah setiap event selesai — ketuk foto untuk membuka dokumentasi lengkapnya.</p>` : '';
+            <p class="ev-footnote">The gallery is updated after each event ends — tap a photo to open its full documentation.</p>` : '';
 
   return `
         <section class="section s1">
             <div class="page-head">
-                <p class="eyebrow">Agenda · Tahun Ajaran 2026/2027</p>
+                <p class="eyebrow">Agenda · Academic Year 2026/2027</p>
                 <h1>Event</h1>
             </div>
         </section>

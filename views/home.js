@@ -12,12 +12,12 @@ module.exports = function home() {
                 <h1 class="hero-title">Orv<span class="grave">è</span>lion</h1>
                 <p class="hero-slogan">Rise Together, Thrive forever</p>
                 <p class="hero-lead">
-                    Tempat kamu nemuin semua agenda, cerita, dan orang-orang di balik
-                    OSIS SMA Ignatius Global School tahun ini.
+                    Where you'll find every agenda, story, and the people
+                    behind OSIS SMA Ignatius Global School this year.
                 </p>
                 <div class="hero-cta">
-                    <a class="btn-solid" href="/event">Lihat Event →</a>
-                    <a class="btn-ghost" href="/aboutus">Tentang Kami</a>
+                    <a class="btn-solid" href="/event">See Events →</a>
+                    <a class="btn-ghost" href="/aboutus">About Us</a>
                 </div>
                 <!-- elemen pendukung: logo kabinet sebagai jangkar visual hero -->
                 <div class="hero-visual" aria-hidden="true">
@@ -27,18 +27,18 @@ module.exports = function home() {
             <!-- statistik statis: ganti angka 32 & 8 dengan data asli kabinet -->
             <!-- realignment: dipindah keluar kolom hero -> strip di dasar section -->
             <p class="hero-stats">
-                <span><strong>32</strong> anggota</span>
+                <span><strong>32</strong> members</span>
                 <span aria-hidden="true">·</span>
-                <span><strong>8</strong> divisi</span>
+                <span><strong>8</strong> divisions</span>
                 <span aria-hidden="true">·</span>
-                <span><strong>3</strong> event tahunan</span>
+                <span><strong>3</strong> annual events</span>
             </p>
         </div>
         <div class="section s2">
             <!-- GANTI-NAMA: teks lorem di bawah cuma placeholder —
                  tinggal ganti dengan arti/cerita asli nama Orvèlion -->
             <div class="name-story">
-                <p class="eyebrow">01 · Makna Nama</p>
+                <p class="eyebrow">01 · Meaning of the Name</p>
                 <h2 class="name-wordmark">Orv<span class="grave">è</span>lion</h2>
                 <div class="name-grid">
                     <div class="name-text">
@@ -62,36 +62,37 @@ module.exports = function home() {
         <div class="section s3">
             <!-- GANTI-VISI-MISI: teks visi & 4 poin misi di bawah masih DRAF.
                  Ganti dengan visi & misi resmi kabinet kamu. -->
-            <p class="eyebrow">02 · Fondasi Kabinet</p>
-            <h2>Visi &amp; Misi</h2>
+            <p class="eyebrow">02 · Cabinet Foundation</p>
+            <h2>Vision &amp; Mission</h2>
             <div class="vm-grid">
                 <div class="vm-visi">
                     <blockquote class="visi-quote">
-                        Menjadi rumah bagi setiap siswa SMA Ignatius Global School —
-                        tempat ide didengar, bakat diasah, dan perbedaan dirayakan;
-                        OSIS yang hadir untuk semua, bukan untuk segelintir.
+                        To be a home for every student of SMA Ignatius Global School —
+                        a place where ideas are heard, talents are honed, and
+                        differences are celebrated; a student council that shows up
+                        for everyone, not just a few.
                     </blockquote>
                 </div>
                 <ol class="vm-misi">
                     <li>
                         <span class="no">01</span>
-                        <span class="tx">Membangun budaya di mana setiap siswa berani
-                        menyuarakan idenya — dan ide itu ditindaklanjuti nyata.</span>
+                        <span class="tx">Building a culture where every student dares
+                        to voice their ideas — and those ideas turn into real action.</span>
                     </li>
                     <li>
                         <span class="no">02</span>
-                        <span class="tx">Menghadirkan agenda sekolah yang berkarakter:
-                        bukan sekadar ramai, tapi meninggalkan bekas.</span>
+                        <span class="tx">Delivering school events with character:
+                        not just lively, but ones that leave a lasting mark.</span>
                     </li>
                     <li>
                         <span class="no">03</span>
-                        <span class="tx">Merawat kebersamaan antar kelas, divisi, dan
-                        angkatan lewat kerja yang terbuka dan jujur.</span>
+                        <span class="tx">Nurturing togetherness across classes, divisions,
+                        and batches through work that is open and honest.</span>
                     </li>
                     <li>
                         <span class="no">04</span>
-                        <span class="tx">Menjaga OSIS tetap dekat dengan siswa,
-                        dipercaya sekolah, dan bermanfaat bagi semua.</span>
+                        <span class="tx">Keeping the student council close to students,
+                        trusted by the school, and beneficial for everyone.</span>
                     </li>
                 </ol>
             </div>

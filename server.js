@@ -150,7 +150,7 @@ app.get('/event', async (req, res) => {
   res.setHeader('Cache-Control', PAGE_CACHE);
   res.send(layout({
     title: 'Event — Orvèlion',
-    active: 'event', lang: 'id',
+    active: 'event', lang: 'en',
     body: renderBoard(events)
   }));
 });
@@ -176,7 +176,7 @@ app.get('/event/:slug', async (req, res) => {
   res.setHeader('Cache-Control', PAGE_CACHE);
   res.send(layout({
     title: `${ev.judul} — Orvèlion`,
-    active: 'event', lang: 'id', dataNav: 'event',
+    active: 'event', lang: 'en', dataNav: 'event',
     body: renderDetail(ev)
   }));
 });
@@ -187,18 +187,18 @@ function notFound(req, res) {
   res.status(404);
   res.setHeader('Cache-Control', PAGE_CACHE);
   res.send(layout({
-    title: '404 — Halaman gak ketemu · Orvèlion',
-    active: '', lang: 'id',
+    title: '404 — Page Not Found · Orvèlion',
+    active: '', lang: 'en',
     body: `
         <section class="section s1">
             <div class="page-head">
                 <p class="eyebrow">404</p>
-                <h1>Halaman gak ketemu</h1>
-                <p>Halaman yang kamu cari udah pindah atau gak pernah ada.
-                   Coba balik ke beranda atau lihat daftar event kami.</p>
+                <h1>Page Not Found</h1>
+                <p>The page you're looking for has moved or never existed.
+                   Head back to the homepage or browse our events.</p>
                 <div class="hero-cta">
-                    <a class="btn-solid" href="/">Ke Beranda →</a>
-                    <a class="btn-ghost" href="/event">Lihat Event</a>
+                    <a class="btn-solid" href="/">Go to Homepage →</a>
+                    <a class="btn-ghost" href="/event">See Events</a>
                 </div>
             </div>
         </section>`

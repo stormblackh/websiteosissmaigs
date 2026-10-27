@@ -411,8 +411,8 @@
     layer.hidden = true;
     layer.innerHTML =
       '<div class="ev-scrim"></div>' +
-      '<div class="ev-panel" role="dialog" aria-modal="true" aria-label="Detail event">' +
-      '  <button class="ev-close" type="button" aria-label="Tutup detail event">✕</button>' +
+      '<div class="ev-panel" role="dialog" aria-modal="true" aria-label="Event details">' +
+      '  <button class="ev-close" type="button" aria-label="Close event details">✕</button>' +
       '  <div class="ev-panel-scroll"><div class="ev-panel-body"></div></div>' +
       '</div>';
     document.body.appendChild(layer);

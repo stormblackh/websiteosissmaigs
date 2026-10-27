@@ -37,13 +37,13 @@ const footer = `
                 </div>
             </div>
             <div class="alamat">
-                <h3>Alamat</h3>
+                <h3>Address</h3>
                 <p>SMA Ignatius Global School<br>
                 Jl. Mayor Ruslan No. 118, 20 Ilir I,<br>
                 Kec. Ilir Timur I, Palembang</p>
             </div>
             <div class="media">
-                <h3>Media Sosial</h3>
+                <h3>Social Media</h3>
                 <a href="#">Instagram</a>
                 <a href="#">TikTok</a>
                 <a href="#">YouTube</a>
@@ -51,7 +51,7 @@ const footer = `
         </div>
         <div class="bottom">
             <span>© 2026 Orvèlion — OSIS SMA Ignatius Global School</span>
-            <span>Kabinet 2026/2027</span>
+            <span>Cabinet 2026/2027</span>
         </div>
     </footer>`;
 
