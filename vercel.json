@@ -1,0 +1,45 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "regions": ["sin1"],
+  "trailingSlash": false,
+
+  "redirects": [
+    { "source": "/Event.html", "destination": "/event", "permanent": true },
+    { "source": "/event.html", "destination": "/event", "permanent": true },
+    { "source": "/Event", "destination": "/event", "permanent": true },
+    { "source": "/AboutUs.html", "destination": "/aboutus", "permanent": true },
+    { "source": "/aboutus.html", "destination": "/aboutus", "permanent": true },
+    { "source": "/AboutUs", "destination": "/aboutus", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/index", "destination": "/", "permanent": true },
+    { "source": "/event/(.*)\\.html", "destination": "/event/$1", "permanent": true }
+  ],
+
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/index" }
+  ],
+
+  "headers": [
+    {
+      "source": "/(style\\.css|script\\.js)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=600, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/Img/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    }
+  ]
+}

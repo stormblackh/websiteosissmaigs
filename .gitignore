@@ -1,0 +1,12 @@
+# Jangan pernah commit node_modules, .env, atau config Vercel lokal.
+node_modules/
+.env
+.vercel/
+
+# File & folder sistem
+.DS_Store
+Thumbs.db
+
+# Helper migrasi full-Node.js (dipakai sekali di komputer lokal, gak perlu masuk repo)
+update-nodejs.bat
+update-nodejs.command
