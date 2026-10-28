@@ -5,8 +5,9 @@
    kosong → views otomatis nampilin placeholder krem, gak ada <img> sama
    sekali, gak pernah ada foto pecah). Struktur & fungsi tetap utuh 100%:
 
-   · papan /event  : 1 kartu live (placeholder) + baris pendaftaran lomba
-                     + 5 baris Dokumentasi (galeri otomatis hilang — kosong)
+   · papan /event  : 1 kartu live (strip lomba di DALAM kartu) + 5 kartu
+                     Dokumentasi BERFOTO (banner/galeri; placeholder krem
+                     + logo bernapas kalau kosong)
    · detail/overlay: kotak lomba 3-KEADAAN tetap jalan (Detail → Pilih
                      Lomba → Pendaftaran) — semua teksnya lorem.
 
