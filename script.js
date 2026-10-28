@@ -601,15 +601,13 @@
 
     if (ovOpen) return;   // overlay buka: bekukan semua navigasi link
 
-    /* kartu event / baris arsip / tile galeri / item pendaftaran →
-       overlay FLIP (bukan swap halaman). Saat HTML detail masih
-       di-fetch, elemen diberi .is-opening (umpan balik visual —
-       shimmer di banner kartu, denyut halus di baris) biar klik
-       gak terasa "mati"; class dilepas otomatis begitu overlay
-       terbuka / fetch gagal (fallback navigasi normal). */
+    /* kartu event (live/dokumentasi) / tile galeri → overlay FLIP
+       (bukan swap halaman). Saat HTML detail masih di-fetch, elemen
+       diberi .is-opening (umpan balik visual — shimmer menyapu banner)
+       biar klik gak terasa "mati"; class dilepas otomatis begitu
+       overlay terbuka / fetch gagal (fallback navigasi normal). */
     const isEvLink =
-      a.classList.contains('ev-card')  || a.classList.contains('ev-row') ||
-      a.classList.contains('ev-gcard') || a.classList.contains('ev-regitem');
+      a.classList.contains('ev-card') || a.classList.contains('ev-gcard');
     if (isEvLink) {
       a.classList.add('is-opening');
       openOverlay(a, href).finally(() => a.classList.remove('is-opening'));

@@ -9,7 +9,9 @@
    sekbid 3 foto group rame-rame (slider). Foto asli dibungkus
    [data-lz] (logo muncul dulu → fade-in begitu foto siap, sistem
    sama dengan banner event). Slot kosong → slide placeholder logo
-   statis. Slider = scroll-snap CSS (swipe jalan tanpa JS) + titik
+   yang "bernapas" (animasi ph-breathe, ritme sama dengan event) —
+   jadi seluruh slot terlihat seperti foto yang sedang loading.
+   Slider = scroll-snap CSS (swipe jalan tanpa JS) + titik
    indikator via script.js (initPhotoSliders).
 
    Kelas CSS baru (.ph-slider / .ph-track / .ph-slide / .ph-empty /
