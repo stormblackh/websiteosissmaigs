@@ -169,6 +169,34 @@
     });
   }
 
+  /* ---------------- slider foto anggota (About Us) ----------------
+     Track = scroll-snap CSS: swipe native di HP tetap jalan meski JS
+     mati. JS hanya menyinkronkan titik indikator + klik titik =
+     lompat slide. Dipasang di load awal dan setelah PJAX swap
+     (listener tidak ikut terbawa fetch). */
+
+  function initPhotoSliders(root) {
+    root.querySelectorAll('.ph-slider').forEach((sl) => {
+      const track = sl.querySelector('.ph-track');
+      const dots = Array.from(sl.querySelectorAll('.ph-dot'));
+      if (!track || !dots.length) return; // 1 slide → statis, gak perlu JS
+
+      const sync = () => {
+        const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+        dots.forEach((d, k) => d.classList.toggle('on', k === i));
+      };
+
+      if (sl.dataset.phReady) { sync(); return; } // PJAX: sinkron ulang
+      sl.dataset.phReady = '1';
+
+      track.addEventListener('scroll', sync, { passive: true });
+      dots.forEach((d, k) => d.addEventListener('click', () => {
+        track.scrollTo({ left: k * track.clientWidth, behavior: motionOK ? 'smooth' : 'auto' });
+      }));
+      sync();
+    });
+  }
+
   /* ---------------- reveal saat scroll (s2/s3, papan event) ---------------- */
 
   function initReveal(root) {
@@ -375,6 +403,7 @@
       initReveal(main);
       initLazyImages(main);
       initLombaBox(main);
+      initPhotoSliders(main);
 
       /* pindahkan fokus ke konten — ramah keyboard & screen reader */
       main.setAttribute('tabindex', '-1');
@@ -659,4 +688,5 @@
   initReveal(document);
   initLazyImages(document);
   initLombaBox(document);
+  initPhotoSliders(document);
 })();

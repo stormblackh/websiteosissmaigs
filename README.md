@@ -15,7 +15,8 @@ views/               ← template halaman (dirender oleh server.js)
   └─ cdn.js          ← konstanta URL Cloudinary
 script.js style.css                        ← aset statis (di-serve langsung oleh Express)
 data/events.js       ← SEMUA konten event (single source of truth)
-data/struktur.js     ← daftar pengurus OSIS — isi halaman About Us
+data/struktur.js     ← daftar pengurus OSIS + foto anggota — isi halaman About Us
+                       (foto: [] = placeholder logo; isi public_id Cloudinary / URL)
 lib/db.js models/Event.js seed.js           ← lapisan MongoDB (opsional)
 ```
 
