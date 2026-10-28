@@ -589,7 +589,9 @@ main.bodys .section.s1 > h1 { margin-block: auto; }
 
 /* ---------------- ABOUT: STRUKTUR ANGGOTA ---------------- */
 
-/* papan inti (Ketua/Wakil/Sekre/Bend) — kartu putih di panel tint s2 */
+/* papan inti (Ketua/Wakil/Sekre/Bend) — kartu putih, foto full-bleed di
+   atas kartu (pojok ikut radius), nama/jabatan di bawahnya. Hover:
+   kartu terangkat halus + bayangan hangat — feedback kecil yang enak. */
 .board-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -601,8 +603,17 @@ main.bodys .section.s1 > h1 { margin-block: auto; }
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 16px;
-  padding: 22px 20px 20px;
+  overflow: hidden; /* foto nempel ke tepi, pojoknya ikut membulat */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+
+.mem-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(156, 56, 28, 0.12);
+  border-color: rgba(217, 83, 13, 0.35);
+}
+
+.mem-info { padding: 16px 18px 18px; }
 
 .mem-name {
   font-weight: 700;
@@ -619,7 +630,8 @@ main.bodys .section.s1 > h1 { margin-block: auto; }
   color: var(--accent);
 }
 
-/* divisi (sekbid) — indeks editorial 2 kolom, hairline atas tiap blok */
+/* divisi (sekbid) — indeks editorial 2 kolom, hairline atas tiap blok,
+   foto group rame-rame di atas nama divisi */
 .div-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -629,8 +641,10 @@ main.bodys .section.s1 > h1 { margin-block: auto; }
 
 .div-block {
   border-top: 2px solid var(--line);
-  padding-top: 16px;
+  padding-top: 18px;
 }
+
+.div-block > .eyebrow { margin-top: 12px; }
 
 .div-name {
   font-size: 1.15rem;
@@ -650,9 +664,86 @@ main.bodys .section.s1 > h1 { margin-block: auto; }
   color: rgba(51, 35, 27, 0.85);
 }
 
+/* ----- slider foto anggota (pola osissmaigs.com: 3 foto, swipe/dots) -----
+   Track = scroll-snap native: swipe di HP jalan bahkan tanpa JS.
+   script.js (initPhotoSliders) cuma nyinkronin titik + klik titik. */
+.ph-slider { position: relative; }
+
+/* frame foto group sekbid: garis halus + radius sendiri (di luar kartu) */
+.ph-group .ph-track {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.ph-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* lama */
+  scroll-behavior: smooth;
+}
+
+.ph-track::-webkit-scrollbar { display: none; }
+
+.ph-slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;   /* 1 swipe = 1 slide, gak pernah nglewat */
+}
+
+/* rasio foto: orang potret 4:5 (kartu), group sekbid landscape 16:10 */
+.ph-person .ph-slide { aspect-ratio: 4 / 5; }
+.ph-group  .ph-slide { aspect-ratio: 16 / 10; }
+
+/* slot kosong: latar krem lembut (sama dengan placeholder data-lz) +
+   logo statis di tengah — "tempat foto sudah disiapkan". */
+.ph-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FFF3EA, #FFE7ED 55%, #F9EDFF);
+}
+
+.ph-logo {
+  width: clamp(40px, 34%, 72px);
+  border-radius: 14px;
+  opacity: 0.45;
+}
+
+/* titik indikator di bawah foto */
+.ph-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.ph-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--line);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.ph-dot:hover { background: rgba(217, 83, 13, 0.45); }
+
+.ph-dot.on {
+  background: var(--brand);
+  transform: scale(1.3);
+}
+
 @media (max-width: 860px) {
   .board-grid { grid-template-columns: repeat(2, 1fr); }
   .div-grid { grid-template-columns: 1fr; gap: 32px; }
+  /* foto potret di layar kecil jangan kegedean */
+  .ph-person .ph-slide { aspect-ratio: 3 / 4; }
 }
 
 /* ---------------- FOOTER ---------------- */
@@ -1413,6 +1504,8 @@ html.js main.bodys.pjax-enter {
   .ev-card.is-opening .ev-thumb::after,
   .ev-gcard.is-opening .ev-gthumb::after,
   .ev-regitem.is-opening .ev-reg-arrow { animation: none; }
+  .ph-track { scroll-behavior: auto; }
+  .ph-dot  { transition: none; }
 }
 
 /* ---------------- OVERLAY DETAIL (layer PJAX) ---------------- */
