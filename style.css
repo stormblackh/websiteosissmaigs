@@ -587,6 +587,74 @@ main.bodys .section.s1 > h1 { margin-block: auto; }
   padding-top: 4px;                /* sejajar optis baris pertama teks */
 }
 
+/* ---------------- ABOUT: STRUKTUR ANGGOTA ---------------- */
+
+/* papan inti (Ketua/Wakil/Sekre/Bend) — kartu putih di panel tint s2 */
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.mem-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 22px 20px 20px;
+}
+
+.mem-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.mem-role {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* divisi (sekbid) — indeks editorial 2 kolom, hairline atas tiap blok */
+.div-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 56px;
+  margin-top: 36px;
+}
+
+.div-block {
+  border-top: 2px solid var(--line);
+  padding-top: 16px;
+}
+
+.div-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--brand);
+  margin: 10px 0 4px;
+}
+
+.div-members { list-style: none; margin-top: 8px; }
+
+.div-members li {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(51, 35, 27, 0.85);
+}
+
+@media (max-width: 860px) {
+  .board-grid { grid-template-columns: repeat(2, 1fr); }
+  .div-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
 /* ---------------- FOOTER ---------------- */
 
 footer {

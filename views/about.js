@@ -1,92 +1,55 @@
 /* Halaman About Us (/aboutus) — isi <main>.
-   Struktur & isi mengikuti situs lama osissmaigs.com (kabinet Ardraxis
-   2025/2026), diadaptasi ke tema Orvèlion 2026/2027 + bahasa Inggris:
-   · s1 — identitas: siapa kita (pola page-head ala halaman Event)
-   · s2 — kabinet: nama + filosofi kerja (padanan bagian "tentang
-           Ardraxis" di situs lama; arti nama belum ada datanya →
-           lorem + penanda GANTI-NAMA, konvensi sama dengan home.js)
-   · s3 — kabinet-kabinet sebelumnya: Ardraxis, Valiance, Asteration,
-           Credence (data dari situs lama, digeser satu periode)
-   Semua kelas CSS (page-head, name-*, vm-*) dipakai ulang dari tema —
-   tanpa nambah CSS baru. Kontak & sosmed sudah termuat di footer. */
+   Konten: direktori SEMUA anggota OSIS, dikelompokkan persekbid
+   (Sekbid 1–8, ditampilkan sebagai Division 01–08) + pengurus inti
+   di atasnya. Sumber data = data/struktur.js (ganti nama cukup di
+   file itu, jumlah board/divisi/anggota bebas — view ikut otomatis).
+   Semua kelas CSS (page-head, eyebrow) + blok baru .board-grid /
+   .mem-card / .div-grid / .div-block / .div-members di style.css
+   (seksi ABOUT: STRUKTUR ANGGOTA) pakai variabel tema yang sama. */
+
+const { esc } = require('./layout');
+const struktur = require('../data/struktur');
 
 module.exports = function about() {
+  const boardCards = struktur.board.map((m) => `
+                    <div class="mem-card">
+                        <p class="mem-name">${esc(m.nama)}</p>
+                        <p class="mem-role">${esc(m.role)}</p>
+                    </div>`).join('');
+
+  const divBlocks = struktur.divisi.map((d) => `
+                    <div class="div-block">
+                        <p class="eyebrow">Division ${esc(d.no)}</p>
+                        <h3 class="div-name">${esc(d.nama)}</h3>
+                        <ul class="div-members">
+                            ${d.anggota.map((a) => `<li>${esc(a)}</li>`).join('\n                            ')}
+                        </ul>
+                    </div>`).join('\n                ');
+
   return `
         <section class="section s1">
             <div class="page-head">
                 <p class="eyebrow">OSIS SMA IGS · 2026/2027</p>
                 <h1>About Us</h1>
                 <p class="page-lead">
-                    Orv&egrave;lion — the student council cabinet of
-                    SMA Ignatius Global School for the 2026/2027 period.
+                    Every member of the Orv&egrave;lion cabinet — the board
+                    and all eight divisions behind OSIS SMA Ignatius Global
+                    School this year.
                 </p>
             </div>
         </section>
         <div class="section s2">
-            <div class="name-story">
-                <p class="eyebrow">01 · The Cabinet</p>
-                <h2 class="name-wordmark">Orv<span class="grave">&egrave;</span>lion</h2>
-                <div class="name-grid">
-                    <div class="name-text">
-                        <!-- GANTI-NAMA: lorem setelah kalimat pertama =
-                             arti/cerita nama Orvèlion, tinggal ganti dengan
-                             versi resminya (konvensi sama dengan home.js). -->
-                        <p>
-                            Orv&egrave;lion is the name of the student council
-                            cabinet of SMA Ignatius Global School for the
-                            2026/2027 period. Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                        </p>
-                        <p>
-                            A council that stands tall and holds firm through
-                            every problem and conflict — one that dares to
-                            work, dares to grow tired, and dares to take
-                            responsibility for everything it carries.
-                        </p>
-                    </div>
-                    <aside class="name-aside">
-                        <p class="name-quote">Rise Together,<br>Thrive forever</p>
-                    </aside>
-                </div>
+            <p class="eyebrow">01 · The Board</p>
+            <h2>Leadership &amp; Secretariat</h2>
+            <div class="board-grid">
+                ${boardCards.trim()}
             </div>
         </div>
         <div class="section s3">
-            <p class="eyebrow">02 · Past Cabinets</p>
-            <h2>The Lineage Before Us</h2>
-            <div class="vm-grid">
-                <div class="vm-visi">
-                    <blockquote class="visi-quote">
-                        One school, one story — every cabinet
-                        carries it forward, year after year.
-                    </blockquote>
-                </div>
-                <ol class="vm-misi">
-                    <li>
-                        <span class="no">01</span>
-                        <span class="tx"><strong>Ardraxis</strong> — the student
-                        council cabinet of SMA Ignatius Global School,
-                        2025/2026.</span>
-                    </li>
-                    <li>
-                        <span class="no">02</span>
-                        <span class="tx"><strong>Valiance</strong> — the student
-                        council cabinet of SMA Ignatius Global School,
-                        2024/2025.</span>
-                    </li>
-                    <li>
-                        <span class="no">03</span>
-                        <span class="tx"><strong>Asteration</strong> — the student
-                        council cabinet of SMA Ignatius Global School,
-                        2023/2024.</span>
-                    </li>
-                    <li>
-                        <span class="no">04</span>
-                        <span class="tx"><strong>Credence</strong> — the student
-                        council cabinet of SMA Ignatius Global School,
-                        2022/2023.</span>
-                    </li>
-                </ol>
+            <p class="eyebrow">02 · The Divisions</p>
+            <h2>Eight Divisions, One Cabinet</h2>
+            <div class="div-grid">
+                ${divBlocks.trim()}
             </div>
         </div>`;
 };
