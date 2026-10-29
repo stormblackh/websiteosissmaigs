@@ -118,7 +118,9 @@ module.exports = function board(events) {
             <p class="ev-footnote">The gallery is updated after each event ends — tap a photo to open its full documentation.</p>` : '';
 
   return `
-        <section class="section s1">
+        <!-- ev-head = varian kepala halaman EVENT: judul rapat ke papan
+             (page-head generik dipakai About Us, jangan ikut diubah) -->
+        <section class="section s1 ev-head">
             <div class="page-head">
                 <p class="eyebrow">Agenda · Academic Year 2026/2027</p>
                 <h1>Event</h1>

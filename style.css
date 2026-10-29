@@ -1064,9 +1064,18 @@ html.js main.bodys.pjax-enter {
   color: rgba(51, 35, 27, 0.85);
 }
 
+/* varian kepala halaman /event (.ev-head di views/board.js): judul
+   RAPAT ke papan — tanpa centering 42vh & padding ramping.
+   page-head generik (dipakai About Us) tidak disentuh sama sekali. */
+main.bodys .section.s1.ev-head { padding-bottom: 40px; }
+main.bodys .section.s1.ev-head .page-head { min-height: 0; }
+
 /* ---------------- papan: label grup + grid ---------------- */
 
-.section.ev-board { padding-block: 40px 88px; }
+/* padding-top 0: label pertama langsung nempel kepala halaman (ev-head).
+   main.bodys di depan = naikkan specificity biar menang atas
+   main.bodys .section { padding: 96px 24px } (dulu kalah diam-diam). */
+main.bodys .section.ev-board { padding-block: 0 88px; }
 
 .ev-label {
   display: flex;
@@ -2000,7 +2009,10 @@ html:not(.js) .evd-lbox button[data-gback] { display: none; }
 
 @media (max-width: 720px) {
   .page-head { min-height: 36vh; }
-  .section.ev-board { padding-block: 32px 64px; }
+  /* kepala /event di HP: tetap rapat ke papan (varian ev-head) */
+  main.bodys .section.s1.ev-head { padding-bottom: 28px; }
+  main.bodys .section.s1.ev-head .page-head { min-height: 0; }
+  main.bodys .section.ev-board { padding-block: 0 64px; }
   .ev-label { margin: 40px 0 20px; }
   .ev-grid { gap: 18px; margin-bottom: 22px; }
   .ev-card { outline-offset: 4px; }
