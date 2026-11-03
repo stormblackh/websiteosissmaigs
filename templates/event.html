@@ -108,7 +108,9 @@
         <span class="text-xs font-mono font-bold text-orvelion-amber">{{ item.label }}</span>
         <h4 class="font-bold text-sm text-white mt-1 mb-2">{{ item.title }}</h4>
         <ul class="text-xs text-orvelion-peach/80 space-y-1">
-          {% for line in item.items %}<li>• {{ line }}</li>{% endfor %}
+          {# item['items'] — WAJIB kurung siku: .items di dict Python
+             collide dengan method bawaan dict.items -> TypeError 500 #}
+          {% for line in item['items'] %}<li>• {{ line }}</li>{% endfor %}
         </ul>
       </div>
     {% endfor %}
