@@ -143,8 +143,6 @@ function initEvents() {
     $("#modal-location").textContent = event.location;
     $("#modal-desc").textContent = event.description;
     $("#modal-highlight").textContent = event.highlight;
-    $("#modal-success").classList.add("hidden");
-    $("#modal-actions").classList.remove("hidden");
     modal.classList.remove("hidden");
     modal.dataset.eventId = event.id;
   };
@@ -158,11 +156,6 @@ function initEvents() {
 
   $$("[data-close-modal]").forEach((btn) => {
     btn.addEventListener("click", () => modal.classList.add("hidden"));
-  });
-
-  $("#modal-register")?.addEventListener("click", () => {
-    $("#modal-success").classList.remove("hidden");
-    $("#modal-actions").classList.add("hidden");
   });
 }
 
@@ -247,6 +240,256 @@ function initWaitingRoom() {
   $("#try-access")?.addEventListener("click", () => {
     window.location.href = returnUrl;
   });
+}
+
+/* ============ formulir pendaftaran Nordelia (/daftar) ============ */
+
+function initDaftar() {
+  const root = $("#daftar-root");
+  const dataEl = $("#daftar-data");
+  if (!root || !dataEl) return;
+
+  const kategori = JSON.parse(dataEl.textContent);
+  const katBtns = $$(".daftar-kat-btn", root);
+  const lombaSel = $("#daftar-lomba");
+  const subWrap = $("#daftar-sub-wrap");
+  const subSel = $("#daftar-sub");
+  const namaEl = $("#daftar-nama");
+  const kelasEl = $("#daftar-kelas");
+  const waEl = $("#daftar-wa");
+  const submitBtn = $("#daftar-submit");
+
+  const slug = (t) =>
+    t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+  // Rekonstruksi pilihan -> cabang (harus cocok dengan orvelion/nordelia.py).
+  const semuaCabang = [];
+  kategori.forEach((kat) => {
+    kat.lomba.forEach((lomba) => {
+      const subs = lomba.subs || null;
+      const fmt = lomba.cabang_fmt || "{}";
+      if (!subs) {
+        semuaCabang.push({ kat, lomba, sub: null, cabang: lomba.nama });
+      } else {
+        subs.forEach((sub) => {
+          const cabang = fmt.includes("{}") ? fmt.replace("{}", sub) : fmt;
+          semuaCabang.push({ kat, lomba, sub, cabang });
+        });
+      }
+    });
+  });
+
+  const state = { kat: null, lomba: null, sub: null };
+
+  const setErr = (key, pesan) => {
+    const el = $(`#daftar-${key}-error`);
+    if (!el) return;
+    el.textContent = pesan || "";
+    el.classList.toggle("hidden", !pesan);
+    const input = key === "cabang" ? null : $(`#daftar-${key}`);
+    if (input) {
+      input.classList.toggle("border-rose-400/70", !!pesan);
+      input.classList.toggle("border-orvelion-coral/25", !pesan);
+    }
+  };
+
+  const renderLomba = () => {
+    lombaSel.innerHTML = "";
+    const kosong = document.createElement("option");
+    kosong.value = "";
+    kosong.textContent = state.kat ? "— pilih lomba —" : "— pilih bidang dulu —";
+    kosong.disabled = kosong.selected = true;
+    lombaSel.appendChild(kosong);
+    if (!state.kat) return;
+    state.kat.lomba.forEach((lomba) => {
+      const opt = document.createElement("option");
+      opt.value = lomba.id;
+      opt.textContent = lomba.nama;
+      lombaSel.appendChild(opt);
+    });
+  };
+
+  const renderSub = () => {
+    const subs = state.lomba && state.lomba.subs ? state.lomba.subs : null;
+    subWrap.classList.toggle("hidden", !subs);
+    subSel.innerHTML = "";
+    if (!subs) return;
+    const label = subWrap.querySelector("label");
+    if (label) label.textContent = state.lomba.sub_label || "Cabang";
+    const kosong = document.createElement("option");
+    kosong.value = "";
+    kosong.textContent = "— pilih cabang —";
+    kosong.disabled = kosong.selected = true;
+    subSel.appendChild(kosong);
+    subs.forEach((sub) => {
+      const opt = document.createElement("option");
+      opt.value = sub;
+      opt.textContent = sub;
+      subSel.appendChild(opt);
+    });
+  };
+
+  const pilihKategori = (kat, lombaId, sub) => {
+    state.kat = kat;
+    state.lomba = null;
+    state.sub = null;
+    katBtns.forEach((b) => {
+      const aktif = b.getAttribute("data-kat") === (kat && kat.id);
+      b.classList.toggle("bg-gradient-to-r", aktif);
+      b.classList.toggle("from-orvelion-rust", aktif);
+      b.classList.toggle("to-orvelion-ember", aktif);
+      b.classList.toggle("text-white", aktif);
+      b.classList.toggle("border-transparent", aktif);
+      b.classList.toggle("shadow-md", aktif);
+      b.classList.toggle("bg-orvelion-card", !aktif);
+      b.classList.toggle("text-orvelion-peach/75", !aktif);
+      b.classList.toggle("border-orvelion-coral/20", !aktif);
+    });
+    renderLomba();
+    renderSub();
+    setErr("cabang", "");
+    if (lombaId && kat) {
+      const lomba = kat.lomba.find((l) => l.id === lombaId);
+      if (lomba) {
+        lombaSel.value = lombaId;
+        state.lomba = lomba;
+        renderSub();
+        if (sub && lomba.subs && lomba.subs.includes(sub)) {
+          subSel.value = sub;
+          state.sub = sub;
+        }
+      }
+    }
+  };
+
+  katBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const kat = kategori.find((k) => k.id === btn.getAttribute("data-kat"));
+      pilihKategori(kat);
+    });
+  });
+
+  lombaSel.addEventListener("change", () => {
+    state.lomba = state.kat
+      ? state.kat.lomba.find((l) => l.id === lombaSel.value) || null
+      : null;
+    state.sub = null;
+    renderSub();
+    setErr("cabang", "");
+  });
+
+  subSel.addEventListener("change", () => {
+    state.sub = subSel.value || null;
+    setErr("cabang", "");
+  });
+
+  [namaEl, kelasEl, waEl].forEach((el) =>
+    el.addEventListener("input", () => setErr(el.id.replace("daftar-", ""), ""))
+  );
+
+  const cekClient = () => {
+    const galat = {};
+    const nama = namaEl.value.trim();
+    const kelas = kelasEl.value.trim();
+    const wa = waEl.value.replace(/[\s\-.()]/g, "").replace(/^\+/, "");
+
+    const pilihan = semuaCabang.find(
+      (c) => c.kat === state.kat && c.lomba === state.lomba && (!c.lomba.subs || c.sub === state.sub)
+    );
+    if (!pilihan) galat.cabang = "Pilih bidang, lomba, dan cabangnya dulu ya.";
+    if (nama.length < 3 || nama.length > 60 || !/[A-Za-z\u00C0-\u024F]/.test(nama))
+      galat.nama = "Isi nama lengkap (3-60 karakter, huruf).";
+    if (!/^1[0-2]\s*[.,:\-]?\s*\S+(?:\s\S+){0,2}$/.test(kelas))
+      galat.kelas = "Format kelas seperti 10.1 CGC / 11.2 MAYOR.";
+    const waNorm = wa.startsWith("62") ? "0" + wa.slice(2) : wa;
+    if (!/^08\d{7,12}$/.test(waNorm))
+      galat.wa = "Nomor WhatsApp belum benar (cth: 081234567890).";
+    return galat;
+  };
+
+  const tampilkanSukses = (ringkasan) => {
+    root.innerHTML = `
+      <div class="py-10 text-center space-y-5">
+        <div class="w-16 h-16 mx-auto rounded-full bg-emerald-950/70 border border-emerald-500/40 flex items-center justify-center">
+          <svg class="w-8 h-8 text-emerald-300"><use href="#i-check"></use></svg>
+        </div>
+        <div class="space-y-1.5">
+          <h2 class="text-2xl font-black text-white">Pendaftaran Terkirim!</h2>
+          <p class="text-sm text-orvelion-peach/85">Data kamu sudah masuk rekap panitia. Tinggal tunggu dikonfirmasi lewat WhatsApp, ya.</p>
+        </div>
+        <div class="max-w-sm mx-auto p-4 rounded-2xl bg-black/40 border border-orvelion-coral/20 text-left text-xs space-y-2">
+          <div class="flex justify-between gap-4"><span class="text-orvelion-peach/60">Nama</span><b class="text-white">${ringkasan.nama}</b></div>
+          <div class="flex justify-between gap-4"><span class="text-orvelion-peach/60">Kelas</span><b class="text-white">${ringkasan.kelas}</b></div>
+          <div class="flex justify-between gap-4"><span class="text-orvelion-peach/60">Cabang</span><b class="text-white">${ringkasan.cabang}</b></div>
+          <div class="flex justify-between gap-4"><span class="text-orvelion-peach/60">Bidang</span><b class="text-white uppercase">${ringkasan.kategori}</b></div>
+        </div>
+        <button id="daftar-ulang" type="button" class="px-6 py-3 rounded-full font-semibold text-xs text-orvelion-peach/80 bg-black/40 border border-orvelion-coral/25">Daftar Lomba Lagi</button>
+      </div>`;
+    $("#daftar-ulang")?.addEventListener("click", () => window.location.reload());
+    root.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  submitBtn?.addEventListener("click", async () => {
+    const galat = cekClient();
+    setErr("cabang", galat.cabang || "");
+    setErr("nama", galat.nama || "");
+    setErr("kelas", galat.kelas || "");
+    setErr("wa", galat.wa || "");
+    const globalEl = $("#daftar-global-error");
+    globalEl.classList.add("hidden");
+    if (Object.keys(galat).length) {
+      root.querySelector(".text-rose-300:not(.hidden)")?.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    const pilihan = semuaCabang.find(
+      (c) => c.kat === state.kat && c.lomba === state.lomba && (!c.lomba.subs || c.sub === state.sub)
+    );
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Mengirim...";
+    try {
+      const res = await fetch("/daftar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          cabang_id: slug(pilihan.cabang),
+          sub: pilihan.sub || "",
+          nama_lengkap: namaEl.value.trim(),
+          kelas: kelasEl.value.trim(),
+          whatsapp: waEl.value.trim(),
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        tampilkanSukses(data.ringkasan || {});
+        return;
+      }
+      const errors = (data && data.errors) || {};
+      setErr("cabang", errors.cabang_id || "");
+      setErr("nama", errors.nama_lengkap || "");
+      setErr("kelas", errors.kelas || "");
+      setErr("wa", errors.whatsapp || "");
+      if (errors._global || !Object.keys(errors).length) {
+        globalEl.textContent = errors._global || "Gagal mengirim. Coba lagi sebentar ya.";
+        globalEl.classList.remove("hidden");
+      }
+    } catch (_err) {
+      globalEl.textContent = "Koneksi ke server terputus. Cek internet kamu lalu coba lagi.";
+      globalEl.classList.remove("hidden");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Kirim Pendaftaran";
+    }
+  });
+
+  // Preselect via ?cabang=<slug> (mis. tombol dari halaman /event).
+  const awal = root.getAttribute("data-preselect");
+  const awalCabang = awal ? semuaCabang.find((c) => slug(c.cabang) === awal) : null;
+  pilihKategori(
+    awalCabang ? awalCabang.kat : kategori[0],
+    awalCabang ? awalCabang.lomba.id : null,
+    awalCabang ? awalCabang.sub : null
+  );
 }
 
 /* ============ navigasi halus (soft-nav, tanpa reload penuh) ============
@@ -402,6 +645,7 @@ function initPage() {
   initEvents();
   initCabinets();
   initWaitingRoom();
+  initDaftar();
 }
 
 document.addEventListener("DOMContentLoaded", initPage);
