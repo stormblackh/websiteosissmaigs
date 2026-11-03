@@ -198,7 +198,7 @@
           {% for name, file in [("Asteration","asteration.png"),("Crecenden","crecenden.png"),("Ardraxis","ardraxis.png")] %}
             <div class="flex flex-col items-center">
               <div class="w-20 h-20 rounded-xl bg-[#120e0c] border border-white/5 p-2 overflow-hidden">
-                <img src="{{ url_for('static', filename='images/' + file) }}" alt="Logo {{ name }}" class="w-full h-full object-contain" />
+                <img src="{{ url_for('static', filename='images/' + file) }}" alt="Logo {{ name }}" loading="lazy" decoding="async" class="w-full h-full object-contain" />
               </div>
               <span class="text-[11px] text-orvelion-peach/70 mt-1.5">{{ name }}</span>
             </div>
