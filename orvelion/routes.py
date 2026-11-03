@@ -70,7 +70,9 @@ def before_us():
 @bp.get("/waiting-room")
 def waiting_room():
     return_url = request.args.get("returnUrl") or "/"
-    if not return_url.startswith("/"):
+    # Tolak juga "//..." — protokol-relatif URL bisa jadi open redirect
+    # (phishing) meski lolos cek startswith("/") biasa.
+    if not return_url.startswith("/") or return_url.startswith("//"):
         return_url = "/"
     return render_template(
         "waiting_room.html",
