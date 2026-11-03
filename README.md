@@ -16,9 +16,32 @@ Buka [http://127.0.0.1:5000](http://127.0.0.1:5000).
 ## Struktur
 
 - `app.py` — titik masuk
-- `orvelion/` — aplikasi Flask, data konten, dan pelindung kapasitas
+- `orvelion/` — aplikasi Flask, data konten, pelindung kapasitas, dan modul pendaftaran (`nordelia.py`)
 - `templates/` — halaman Jinja
 - `static/` — CSS, JavaScript, dan gambar
+
+## Pendaftaran Lomba Nordelia (halaman `/daftar`)
+
+Formulir di halaman `/daftar` meneruskan pendaftaran ke spreadsheet rekap
+panitia lewat webhook Google Apps Script. Supaya aktif:
+
+1. Salin `.env.example` jadi `.env` di akar repo.
+2. Isi `GOOGLE_SHEET_WEBHOOK_URL` dengan URL deployment Apps Script panitia
+   (yang diakhiri `/exec`).
+3. Jalankan ulang `python app.py`.
+
+Tanpa `.env`, halaman tetap terbuka tapi menampilkan pemberitahuan bahwa
+pendaftaran online belum aktif — tidak ada yang crash.
+
+Kenapa dikirim lewat server Flask, bukan langsung dari browser? Supaya URL
+webhook tidak tersebar di kode halaman (bisa dipakai spam) dan semua input
+tervalidasi dulu: nama, format kelas (cth. `10.1 CGC`), nomor WhatsApp
+(dinormalkan ke format `08…`), dan cabang lomba harus ada di daftar resmi.
+Ada juga rem per-IP: maksimal 5 kiriman per 10 menit dari perangkat yang sama.
+
+Daftar lomba & cabangnya dikelola di `orvelion/nordelia.py`
+(`KATEGORI_LOMBA`) — kalau panitia menambah cabang baru, edit di situ lalu
+build ulang CSS bila ikut menyentuh kelas Tailwind.
 
 ## Optimasi performa (baca ini sebelum edit CSS/kelas)
 
