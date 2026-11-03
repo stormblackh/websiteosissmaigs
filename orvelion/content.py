@@ -86,6 +86,22 @@ MISSIONS = [
 
 EVENTS = [
     {
+        "id": "nordelia",
+        "title": "Nordelia 2026: Festival Litnum, Olimpiade, Bahasa, Seni & Olahraga",
+        "category": "Unggulan",
+        "date": "Periode Bulan Bahasa 2026",
+        "time": "Pendaftaran online dibuka",
+        "location": "SMA Ignatius Global School",
+        "status": "Pendaftaran Dibuka",
+        "description": "Festival lomba tahunan SMA IGS: Literasi & Numerasi, Olimpiade Sains & AI, debat, bahasa asing, FLS3N, sampai O2SN — 41 cabang lomba yang bisa didaftar lewat satu formulir online.",
+        "highlight": "41 Cabang Lomba • Satu Formulir Online untuk Semua",
+        "target": "Seluruh Siswa SMA IGS",
+        # Pintu masuk formulir pendaftaran online event ini. Isi nilai URL
+        # (mis. "/daftar") HANYA saat event itu benar-benar membuka daftar;
+        # tombolnya lalu muncul otomatis di kartu & modal detail event terkait.
+        "daftar_url": "/daftar",
+    },
+    {
         "id": "igs-cup",
         "title": "IGS CUP 2026/2027: Rise of the Champions",
         "category": "Unggulan",
@@ -96,22 +112,6 @@ EVENTS = [
         "description": "Kompetisi olahraga dan e-sports tahunan bergengsi antar pelajar se-Sumatera Selatan. Mempertandingkan basket, futsal, bulu tangkis, dan Mobile Legends.",
         "highlight": "Total Hadiah Puluhan Juta Rupiah & Piala Bergilir IGS",
         "target": "Siswa SMA/SMK se-Sumatera Selatan",
-    },
-    {
-        "id": "bulan-bahasa",
-        "title": "Gita Nusantara: Bulan Bahasa & Seni 2026",
-        "category": "Seni",
-        "date": "28 - 30 Oktober 2026",
-        "time": "09:00 - 15:30 WIB",
-        "location": "Auditorium Utama Lantai 4 IGS",
-        "status": "Pendaftaran Dibuka",
-        "description": "Pesta apresiasi sastra, teater monolog, orasi kebangsaan, cipta puisi, dan pameran instalasi seni rupa karya siswa SMA IGS.",
-        "highlight": "Special Performance Teater Siswa & Guest Poet",
-        "target": "Seluruh Siswa SMA IGS & Umum",
-        # Pintu masuk formulir pendaftaran online event ini. Isi nilai URL
-        # (mis. "/daftar") HANYA saat event itu benar-benar membuka daftar;
-        # tombolnya lalu muncul otomatis di modal detail event terkait.
-        "daftar_url": "/daftar",
     },
     {
         "id": "orvelion-leadership",
