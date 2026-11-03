@@ -16,7 +16,6 @@ SITE = {
 NAV_LINKS = [
     {"name": "Beranda", "href": "/", "id": "home"},
     {"name": "Event", "href": "/event", "id": "event"},
-    {"name": "Daftar", "href": "/daftar", "id": "daftar"},
     {"name": "Before Us", "href": "/before-us", "id": "before-us"},
     {"name": "Kontak", "href": "#footer", "id": "footer"},
 ]
@@ -109,6 +108,10 @@ EVENTS = [
         "description": "Pesta apresiasi sastra, teater monolog, orasi kebangsaan, cipta puisi, dan pameran instalasi seni rupa karya siswa SMA IGS.",
         "highlight": "Special Performance Teater Siswa & Guest Poet",
         "target": "Seluruh Siswa SMA IGS & Umum",
+        # Pintu masuk formulir pendaftaran online event ini. Isi nilai URL
+        # (mis. "/daftar") HANYA saat event itu benar-benar membuka daftar;
+        # tombolnya lalu muncul otomatis di modal detail event terkait.
+        "daftar_url": "/daftar",
     },
     {
         "id": "orvelion-leadership",

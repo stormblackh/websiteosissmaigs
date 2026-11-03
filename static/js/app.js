@@ -143,6 +143,15 @@ function initEvents() {
     $("#modal-location").textContent = event.location;
     $("#modal-desc").textContent = event.description;
     $("#modal-highlight").textContent = event.highlight;
+    /* Tombol daftar hanya tampil di event yang memang membuka
+       pendaftaran (field "daftar_url" di content.py). */
+    const daftarLink = $("#modal-daftar");
+    if (event.daftar_url) {
+      daftarLink.href = event.daftar_url;
+      daftarLink.classList.remove("hidden");
+    } else {
+      daftarLink.classList.add("hidden");
+    }
     modal.classList.remove("hidden");
     modal.dataset.eventId = event.id;
   };

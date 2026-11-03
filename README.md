@@ -23,7 +23,16 @@ Buka [http://127.0.0.1:5000](http://127.0.0.1:5000).
 ## Pendaftaran Lomba Nordelia (halaman `/daftar`)
 
 Formulir di halaman `/daftar` meneruskan pendaftaran ke spreadsheet rekap
-panitia lewat webhook Google Apps Script. Supaya aktif:
+panitia lewat webhook Google Apps Script.
+
+Pintu masuknya ada di **modal detail event** (halaman Event) — bukan di navbar,
+karena pendaftaran terikat event tertentu, bukan fitur situs se-level menu.
+Tombol "Daftar Lewat Formulir Online" hanya muncul di event yang memiliki field
+`daftar_url` di `orvelion/content.py` (saat ini: Bulan Bahasa). Begitu event
+lain resmi membuka pendaftaran, tinggal tambahkan `"daftar_url": "/daftar"`
+pada entri event tersebut.
+
+Supaya aktif:
 
 1. Salin `.env.example` jadi `.env` di akar repo.
 2. Isi `GOOGLE_SHEET_WEBHOOK_URL` dengan URL deployment Apps Script panitia
