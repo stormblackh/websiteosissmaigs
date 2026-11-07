@@ -1,0 +1,52 @@
+BACA DULU — ZIP BARU, CARA PUSH YANG BENAR
+==========================================
+
+APA YANG TADI SALAH?
+--------------------
+Commit kamu "10d0368 Optimasi: PJAX, gzip, ..." di GitHub isinya CUMA SATU file:
+orvelion-optimasi.bundle (31 KB, itu cuma file transfer). Kode optimasi aslinya
+(pjax.js, optimizations.py, dll) TIDAK IKUT ke GitHub.
+
+Penyebabnya: zip lama isinya file .bundle, dan yang ke-commit justru file
+bundle-nya — bukan kodenya.
+Zip BARU ini isinya LANGSUNG KODE-NYA. Buang zip lama, pakai yang ini.
+
+ISI ZIP INI
+-----------
+Folder web-orvelion-prod/ = semua file kode LENGKAP (versi final yang sudah dites):
+PJAX, gzip, ETag 304, micro-cache, rate limit, retry sync, WAL, transisi fade halus.
+
+LANGKAH PUSH (± 5 MENIT)
+------------------------
+1. Extract zip ini.
+2. Buka folder "web-orvelion-prod" hasil extract.
+3. Select SEMUA isinya (Ctrl+A) lalu Copy.
+4. Paste ke DALAM folder repo kamu (folder yang ada .git-nya).
+   Kalau ditanya, pilih Replace / Overwrite SEMUA.
+5. Hapus file "orvelion-optimasi.bundle" di repo kamu kalau masih ada.
+6. Buka terminal di folder repo kamu, jalankan tiga baris ini:
+
+      git add -A
+      git commit -m "Optimasi lengkap: PJAX, gzip, ETag, micro-cache, WAL, transisi fade"
+      git push
+
+7. Selesai! Buat memastikan berhasil: buka GitHub, cek bahwa file-file ini ADA:
+
+      static/js/pjax.js
+      orvelion/optimizations.py
+      PANDUAN-OPTIMISASI.md
+
+   Kalau ketiganya kelihatan di GitHub = BERHASIL.
+
+KALAU PUSH DITOLAK (rejected / non-fast-forward)
+------------------------------------------------
+
+      git pull --rebase origin main
+      git push
+
+AMAN, TENANG
+------------
+- Semua commit teman kamu (530361b "fls3n jadi mayor" dan yang lebih lama)
+  TIDAK tersentuh, tetap utuh di history GitHub.
+- Tidak ada file .env / kredensial / database di zip ini.
+- Jangan memasukkan file BACA-DULU-PUSH.txt atau file .zip ke dalam repo.

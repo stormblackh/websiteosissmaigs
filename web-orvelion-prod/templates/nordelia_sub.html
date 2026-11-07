@@ -1,0 +1,849 @@
+{% extends "base.html" %}
+{% block title %}{{ category.name }} | Nordelia 2026 | {{ site.name }}{% endblock %}
+{% block content %}
+<!-- Ambient Luxury Aurora Mesh Gradient (Soft Gold, Celestial Sky, Soft Rose - Identik dengan Beranda Nordelia) -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0 opacity-35">
+  <div class="absolute -top-40 -left-40 w-[650px] h-[650px] rounded-full blur-[140px]" style="background: radial-gradient(circle, #38BDF8 0%, rgba(56,189,248,0) 70%);"></div>
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[550px] rounded-full blur-[160px]" style="background: radial-gradient(circle, #F5D061 0%, rgba(245,208,97,0) 70%);"></div>
+  <div class="absolute -top-32 -right-32 w-[650px] h-[650px] rounded-full blur-[140px]" style="background: radial-gradient(circle, #FDE68A 0%, rgba(253,230,138,0) 70%);"></div>
+  <div class="absolute bottom-10 right-1/4 w-[550px] h-[550px] rounded-full blur-[150px]" style="background: radial-gradient(circle, #FDA4AF 0%, rgba(253,164,175,0) 70%);"></div>
+</div>
+
+<!-- Floating Ambient Star Dust Sparkles -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none opacity-25">
+  <div class="absolute top-24 left-[15%] text-[#FDE68A] text-lg animate-pulse">✨</div>
+  <div class="absolute top-48 right-[20%] text-[#38BDF8] text-base animate-pulse" style="animation-delay: 1s;">✦</div>
+  <div class="absolute top-[60%] left-[8%] text-[#F5D061] text-xl animate-pulse" style="animation-delay: 2s;">★</div>
+  <div class="absolute top-[40%] right-[10%] text-[#FDA4AF] text-sm animate-pulse" style="animation-delay: 1.5s;">✨</div>
+  <div class="absolute bottom-32 left-[25%] text-[#FDE68A] text-base animate-pulse" style="animation-delay: 2.5s;">✦</div>
+</div>
+
+<div class="relative z-10">
+  <!-- HEADER COVER BANNER (Persis Tampilan Banner Google Form) -->
+  <section class="relative pt-6 pb-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Clean Breadcrumb -->
+      <div class="flex items-center gap-2 mb-4 text-xs">
+        <a href="/nordelia" class="inline-flex items-center gap-1.5 text-stone-300 hover:text-[#FDE68A] transition-colors font-bold px-3 py-1 rounded-full bg-black/50 border border-white/10 shadow-sm">
+          <span>&larr;</span>
+          <span>Beranda Nordelia</span>
+        </a>
+        <span class="text-stone-500">/</span>
+        <span class="text-[#FDE68A] font-extrabold px-3 py-1 rounded-full bg-[#F5D061]/15 border border-[#F5D061]/35 text-[11px] uppercase tracking-wider">
+          {{ category.name }}
+        </span>
+      </div>
+
+      <!-- Main Header Container with Google Form Cover Banner Style -->
+      <div class="rounded-3xl border backdrop-blur-xl relative overflow-hidden shadow-2xl"
+           style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(24, 34, 62, 0.92) 100%); border-color: rgba(245, 208, 97, 0.35); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(245, 208, 97, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.12);">
+
+        <!-- Top Banner Cover (Google Form Header Style) -->
+        <div class="relative w-full h-48 sm:h-60 md:h-72 lg:h-80 overflow-hidden border-b border-[#F5D061]/30 bg-black/60">
+          <img src="{{ url_for('static', filename='images/nordelia_banner.jpg') }}"
+               alt="Official Banner Nordelia 2026"
+               class="w-full h-full object-cover object-center filter brightness-95 transform hover:scale-102 transition-transform duration-700" fetchpriority="high" decoding="async" />
+          
+          <!-- Gradient Overlay transitioning smoothly to card body below -->
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/25 to-transparent"></div>
+          
+          <!-- Top subtle gold shimmer bar -->
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-[#F5D061] to-transparent"></div>
+
+          <!-- Official Event Badge on Top Left of Banner -->
+          <div class="absolute top-3.5 left-4 sm:left-6 flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#0B1120]/85 backdrop-blur-md text-[#FDE68A] border border-[#F5D061]/40 shadow-lg">
+              Official Event Banner
+            </span>
+          </div>
+
+          <!-- Bottom floating Category Title Badge on Banner -->
+          <div class="absolute bottom-4 left-4 sm:left-8 flex items-center gap-2">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-[#0B1120]/90 backdrop-blur-md text-[#FDE68A] border border-[#F5D061]/40 shadow-2xl">
+              <span class="w-2 h-2 rounded-full bg-[#F5D061] animate-ping"></span>
+              <svg class="w-3.5 h-3.5 text-[#F5D061]"><use href="#i-sparkles"></use></svg>
+              <span>{{ category.name }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Area below Banner (Google Form Body Style) -->
+        <div class="p-6 sm:p-8 space-y-5">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-5">
+            <div class="space-y-2">
+              <h1 class="text-2xl sm:text-4xl font-black text-white tracking-tight">
+                Pendaftaran Cabang <span class="bg-gradient-to-r from-white via-[#FDE68A] to-[#F5D061] bg-clip-text text-transparent">{{ category.name }}</span>
+              </h1>
+              <p class="text-xs sm:text-sm text-stone-300 max-w-3xl leading-relaxed">
+                {% if category.description %}{{ category.description }}{% else %}Pilih cabang lomba di bawah ini dan lengkapi formulir pendaftaran resmi Nordelia 2026.{% endif %}
+              </p>
+            </div>
+            
+            <div class="text-[11px] font-extrabold text-[#FDE68A] px-4 py-2 rounded-xl bg-black/60 border border-[#F5D061]/30 shrink-0 flex items-center gap-2 self-start md:self-auto shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>{{ category.subEvents|length }} Cabang Lomba</span>
+            </div>
+          </div>
+
+          <!-- Interactive Search Bar -->
+          <div class="pt-1">
+            <div class="relative w-full max-w-xl">
+              <svg class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#F5D061]"><use href="#i-search"></use></svg>
+              <input id="sub-branch-search" type="text" placeholder="Cari cabang lomba di kategori ini..."
+                     class="w-full pl-9 pr-4 py-3 rounded-xl bg-black/60 border border-[#F5D061]/35 text-xs text-white placeholder-stone-400 focus:outline-none focus:border-[#F5D061] focus:ring-1 focus:ring-[#F5D061] transition-all shadow-inner" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PILIHAN JURUSAN KELAS UNTUK OSN (IPA / IPS) -->
+  {% if category.id in ('osn', 'olimpiade-9-cabang') %}
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2">
+    <div class="p-5 sm:p-6 rounded-3xl bg-[#0D1527]/80 border border-white/10 backdrop-blur-xl shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/[0.04] text-[#FDE68A] border border-[#F5D061]/25">
+            Peminatan Kelas Peserta
+          </span>
+          <h2 class="text-lg sm:text-xl font-black text-white mt-1">
+            Ketentuan Peminatan OSN (IPA vs IPS)
+          </h2>
+          <p class="text-xs text-stone-400 mt-0.5 max-w-2xl">
+            Siswa kelas <strong>IPA</strong> dapat mendaftar di 9 cabang, sedangkan siswa kelas <strong>IPS</strong> berhak memilih <strong>Matematika</strong>, <strong>Kebumian</strong>, <strong>Geografi</strong>, dan <strong>Ekonomi</strong>.
+          </p>
+        </div>
+        {% if selected_jurusan %}
+          <div class="shrink-0">
+            <a href="/nordelia/osn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-semibold text-stone-300 hover:text-white border border-white/10 transition-colors">
+              <span>Tampilkan Semua Cabang</span>
+              <svg class="w-3.5 h-3.5"><use href="#i-refresh"></use></svg>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- 2 Cards Jurusan -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Card 1: Kelas IPA -->
+        <a href="/nordelia/osn?jurusan=ipa"
+           class="p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-start gap-4 {% if selected_jurusan == 'ipa' %}bg-sky-950/40 border-sky-400/60 ring-1 ring-sky-400/30 shadow-lg{% else %}bg-white/[0.02] border-white/10 hover:border-sky-400/40 hover:bg-white/[0.04]{% endif %}">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-sky-500/10 text-sky-400 border border-sky-500/20 text-lg">
+            🔬
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-bold text-base text-white">Kelas IPA (MIPA)</h3>
+              {% if selected_jurusan == 'ipa' %}
+                <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-sky-400 text-black">
+                  ✓ Aktif
+                </span>
+              {% endif %}
+            </div>
+            <p class="text-xs text-stone-400 mt-1 leading-relaxed">
+              Dapat memilih <strong>seluruh 9 cabang OSN</strong> (Matematika, Fisika, Kimia, Biologi, Astronomi, Informatika, Kebumian, Geografi, Ekonomi).
+            </p>
+            <div class="mt-2.5 text-xs font-bold text-sky-400 flex items-center gap-1">
+              <span>{% if selected_jurusan == 'ipa' %}Peminatan Terpilih{% else %}Pilih Kelas IPA &rarr;{% endif %}</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Card 2: Kelas IPS -->
+        <a href="/nordelia/osn?jurusan=ips"
+           class="p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex items-start gap-4 {% if selected_jurusan == 'ips' %}bg-amber-950/30 border-[#F5D061]/60 ring-1 ring-[#F5D061]/30 shadow-lg{% else %}bg-white/[0.02] border-white/10 hover:border-[#F5D061]/40 hover:bg-white/[0.04]{% endif %}">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-[#F5D061]/10 text-[#FDE68A] border border-[#F5D061]/20 text-lg">
+            📚
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-bold text-base text-white">Kelas IPS (Sosial)</h3>
+              {% if selected_jurusan == 'ips' %}
+                <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-[#F5D061] text-black">
+                  ✓ Aktif
+                </span>
+              {% endif %}
+            </div>
+            <p class="text-xs text-stone-400 mt-1 leading-relaxed">
+              Dapat memilih cabang <strong>Matematika</strong>, <strong>Kebumian</strong>, <strong>Geografi</strong>, dan <strong>Ekonomi</strong>. Cabang sains lainnya khusus IPA.
+            </p>
+            <div class="mt-2.5 text-xs font-bold text-[#FDE68A] flex items-center gap-1">
+              <span>{% if selected_jurusan == 'ips' %}Peminatan Terpilih{% else %}Pilih Kelas IPS &rarr;{% endif %}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- SUB-EVENTS GRID -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div id="sub-branches-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {% for sub in category.subEvents %}
+        <article class="sub-branch-card group rounded-2xl p-5 border backdrop-blur-md flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)] relative overflow-hidden"
+                 data-branch-name="{{ sub.name | lower }}"
+                 style="background: linear-gradient(145deg, rgba(15, 23, 42, 0.95) 0%, rgba(22, 34, 62, 0.9) 100%); border-color: rgba(245, 208, 97, 0.28); box-shadow: 0 12px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);">
+          
+          <!-- Subtle Top Accent Light on Hover -->
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#F5D061]/40 to-transparent group-hover:via-[#F5D061] transition-all"></div>
+
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/[0.05] text-[#FDE68A] border border-[#F5D061]/25">
+                Cabang Lomba
+              </span>
+              {% if sub.is_external_gform %}
+                <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400/10 text-[#FDE68A] border border-[#F5D061]/30 flex items-center gap-1">
+                  <svg class="w-3 h-3 text-[#F5D061]"><use href="#i-external"></use></svg>
+                  Google Form
+                </span>
+              {% elif sub.is_olimpiade_or_ai %}
+                {% if sub.is_full %}
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-950/40 text-rose-300 border border-rose-500/30">
+                    Kuota Penuh
+                  </span>
+                {% else %}
+                  <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-white/[0.04] text-[#FDE68A] border border-white/10">
+                    Sisa {{ sub.remaining_quota if sub.remaining_quota is not none else (20 - (sub.registered_count or 0)) }} Kuota
+                  </span>
+                {% endif %}
+              {% else %}
+                <span class="text-[10px] font-medium px-2.5 py-0.5 rounded-full bg-white/[0.04] text-stone-300 border border-white/10">
+                  Kuota Terbuka
+                </span>
+              {% endif %}
+            </div>
+
+            <div>
+              <h4 class="text-base sm:text-lg font-bold text-white group-hover:text-[#FDE68A] transition-colors leading-snug">
+                {{ sub.name }}
+              </h4>
+              {% if sub.ketentuan %}
+                <div class="mt-1.5 text-[11px] px-2.5 py-1 rounded-lg bg-amber-400/10 border border-amber-400/25 text-[#FDE68A] leading-tight flex items-center gap-1.5">
+                  <span class="font-extrabold uppercase text-[9px] px-1.5 py-0.2 bg-[#F5D061]/20 rounded">Tema</span>
+                  <span class="truncate italic">"{{ sub.ketentuan.tema }}"</span>
+                </div>
+              {% endif %}
+              {% if sub.tempat and sub.tempat != '-' %}
+                <p class="text-xs text-stone-400 mt-1 flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-stone-500"><use href="#i-location"></use></svg>
+                  <span>Lokasi: <strong class="text-stone-300">{{ sub.tempat }}</strong></span>
+                </p>
+              {% endif %}
+            </div>
+
+            <!-- Progress Bar Kuota / Box Pendaftaran -->
+            {% if sub.is_external_gform %}
+              <div class="p-3 rounded-xl bg-black/50 border border-[#F5D061]/30 flex flex-col gap-2 text-xs backdrop-blur-sm">
+                <div class="flex items-center justify-between">
+                  <span class="text-stone-300 font-medium">Pendaftaran:</span>
+                  <span class="font-black text-[#FDE68A] flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5 text-[#F5D061]"><use href="#i-external"></use></svg>
+                    Google Form Resmi
+                  </span>
+                </div>
+                <div class="flex items-start gap-1.5 text-[11px] text-amber-200/95 bg-amber-500/10 px-2.5 py-1.5 rounded-lg border border-amber-500/25 leading-snug">
+                  <svg class="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 16v-4m0-4h.01"/></svg>
+                  <span>Gunakan akun email resmi sekolah untuk mendaftar.</span>
+                </div>
+              </div>
+            {% elif sub.is_olimpiade_or_ai %}
+              <div class="p-3 rounded-xl bg-black/40 border border-white/10 space-y-1.5">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-stone-400">Pendaftar Kuota:</span>
+                  <span class="font-bold text-white">{{ sub.registered_count or 0 }} / 20</span>
+                </div>
+                <div class="w-full bg-white/5 rounded-full h-1.5 overflow-hidden border border-white/5">
+                  <div class="h-full bg-gradient-to-r from-sky-400 to-[#F5D061] rounded-full transition-all duration-500" 
+                       style="width: {{ [(((sub.registered_count or 0) / 20) * 100), 100]|min }}%;"></div>
+                </div>
+              </div>
+            {% else %}
+              <div class="p-3 rounded-xl bg-black/50 border border-[#F5D061]/20 flex items-center justify-between text-xs backdrop-blur-sm">
+                <span class="text-stone-300 font-medium">{% if sub.is_team %}Tim Terdaftar:{% else %}Peserta Terdaftar:{% endif %}</span>
+                <span class="font-black text-[#FDE68A] font-mono text-sm">{{ sub.registered_count or 0 }} {% if sub.is_team %}Tim{% else %}Orang{% endif %}</span>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-white/10 space-y-2">
+            {% if sub.juknis_url %}
+              <a href="{{ sub.juknis_url }}"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="w-full py-2.5 px-3 rounded-xl text-xs font-bold text-[#FDE68A] bg-white/[0.06] hover:bg-white/[0.12] border border-[#F5D061]/35 hover:border-[#F5D061]/70 transition-all flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01]">
+                <svg class="w-4 h-4 text-[#F5D061]"><use href="#i-sparkles"></use></svg>
+                <span>Lihat Ketentuan & Juknis Lengkap</span>
+              </a>
+            {% elif sub.ketentuan or (ketentuan_detail and ketentuan_detail.get(sub.id)) %}
+              <button type="button"
+                      data-open-ketentuan="{{ sub.id }}"
+                      data-sub-name="{{ sub.name }}"
+                      class="w-full py-2.5 px-3 rounded-xl text-xs font-bold text-[#FDE68A] bg-white/[0.06] hover:bg-white/[0.12] border border-[#F5D061]/35 hover:border-[#F5D061]/70 transition-all flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01]">
+                <svg class="w-4 h-4 text-[#F5D061]"><use href="#i-sparkles"></use></svg>
+                <span>Lihat Ketentuan & Juknis Lengkap</span>
+              </button>
+            {% endif %}
+
+            {% if sub.is_external_gform %}
+              <a href="{{ sub.gform_url }}"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="w-full py-2.5 rounded-xl text-xs font-black uppercase tracking-wider text-[#0B1120] bg-gradient-to-r from-[#FDE68A] via-[#F5D061] to-[#E5B869] hover:brightness-110 shadow-sm transition-all hover:scale-[1.01] flex items-center justify-center gap-1.5 group/btn">
+                <svg class="w-3.5 h-3.5 shrink-0"><use href="#i-external"></use></svg>
+                <span>Daftar via Google Form</span>
+                <span class="text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">&rarr;</span>
+              </a>
+              {% if sub.group_link %}
+                <a href="{{ sub.group_link }}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="w-full py-2 px-3 rounded-xl text-[11px] font-bold text-white bg-[#06C755] hover:bg-[#05b34c] shadow-sm hover:scale-[1.01] transition-all flex items-center justify-center gap-1.5">
+                  <svg class="w-3.5 h-3.5 text-white"><use href="#i-message"></use></svg>
+                  <span>Masuk Grup LINE Peserta &rarr;</span>
+                </a>
+              {% endif %}
+            {% elif sub.is_disabled_jurusan %}
+              <button type="button"
+                      data-blocked-jurusan-btn="{{ sub.id }}"
+                      data-blocked-sub-name="{{ sub.name }}"
+                      class="w-full py-2.5 rounded-xl text-xs font-semibold text-stone-300 bg-stone-900 border border-white/10 hover:border-amber-400/50 hover:text-amber-200 transition-colors flex items-center justify-center gap-1.5"
+                      title="Klik untuk melihat ketentuan peminatan">
+                <svg class="w-3.5 h-3.5 text-amber-400"><use href="#i-x"></use></svg>
+                <span>Khusus Siswa IPA (Lihat Info)</span>
+              </button>
+            {% elif sub.is_full %}
+              <button type="button" disabled
+                      class="w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-stone-500 bg-stone-900 border border-white/5 cursor-not-allowed flex items-center justify-center gap-1.5">
+                <span>Kuota Penuh (20/20)</span>
+              </button>
+            {% else %}
+              <button type="button"
+                      data-register-sub="{{ sub.id }}"
+                      data-sub-name="{{ sub.name }}"
+                      class="w-full py-3 rounded-xl text-xs font-black uppercase tracking-wider text-[#0B1120] bg-gradient-to-r from-[#FDE68A] via-[#F5D061] to-[#E5B869] hover:brightness-110 shadow-[0_8px_20px_rgba(245,208,97,0.3)] transition-all hover:scale-[1.02] flex items-center justify-center gap-1.5">
+                <span>Daftar Lomba</span>
+                <span class="text-sm font-bold">&rarr;</span>
+              </button>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <!-- Empty search message -->
+    <div id="sub-empty-search" class="hidden py-16 text-center text-stone-400 space-y-2">
+      <p class="text-base font-bold text-white">Cabang lomba tidak ditemukan</p>
+      <p class="text-xs">Coba gunakan kata kunci pencarian yang lain.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ========================================================================= -->
+<!-- REGISTRATION FORM MODAL (FORMAT SHEET 2 SESUAI CABANG) -->
+<!-- ========================================================================= -->
+<div id="modal-register" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+  <div class="relative w-full max-w-xl rounded-3xl p-6 sm:p-8 bg-[#0F172A] border border-[#F5D061]/35 shadow-[0_25px_60px_rgba(0,0,0,0.85),0_0_35px_rgba(245,208,97,0.15)] max-h-[92vh] overflow-y-auto shadow-2xl">
+    
+    <button type="button" id="btn-close-register-modal" class="absolute top-5 right-5 p-2 rounded-full bg-white/10 text-stone-300 hover:text-white" aria-label="Tutup">
+      <svg class="w-5 h-5"><use href="#i-x"></use></svg>
+    </button>
+
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-10 h-10 rounded-2xl flex items-center justify-center bg-gradient-to-tr from-[#38BDF8] via-[#FDE68A] to-[#F5D061] text-[#0B1120] font-black">
+        <svg class="w-5 h-5"><use href="#i-trophy"></use></svg>
+      </div>
+      <div>
+        <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/10 text-[#FBBF24]">
+          {{ category.name }}
+        </span>
+        <h3 id="form-sub-title" class="text-xl sm:text-2xl font-black text-white">Formulir Pendaftaran</h3>
+      </div>
+    </div>
+
+    <!-- Info Kuota Khusus Olimpiade 9 Cabang + AI -->
+    <div id="form-quota-banner" class="hidden p-3 rounded-xl bg-amber-950/50 border border-amber-500/40 text-xs text-amber-200 mb-4 flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+      <span><strong>Aturan Kuota:</strong> Cabang olimpiade dibatasi <strong>maksimal 20 peserta</strong> per cabang.</span>
+    </div>
+
+    <!-- Status Kuota & Info Realtime -->
+    <div id="form-sub-rule-box" class="p-3 rounded-xl bg-black/40 border border-white/10 text-xs text-stone-300 mb-4"></div>
+
+    <!-- Alert status -->
+    <div id="form-alert" class="hidden p-3 rounded-xl mb-4 text-xs font-bold"></div>
+
+    <form id="nordelia-sub-reg-form" class="space-y-4">
+      <input type="hidden" name="category_id" id="input-category-id" value="{{ category.id }}" />
+      <input type="hidden" name="cabang_id" id="input-cabang-id" value="" />
+
+      <!-- Dynamic Form Fields Sesuai Format Resmi Sheet 2 -->
+      <div id="dynamic-form-fields" class="space-y-4"></div>
+
+      <div class="pt-2">
+        <button type="submit" id="btn-submit-registration"
+                class="w-full py-3.5 rounded-xl font-black text-xs uppercase tracking-wider bg-gradient-to-r from-[#FDE68A] via-[#F5D061] to-[#E5B869] text-[#0B1120] hover:brightness-110 shadow-lg transition-transform hover:scale-[1.01] flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-stone-900"><use href="#i-check"></use></svg>
+          <span><strong>Kirim Pendaftaran</strong></span>
+        </button>
+      </div>
+
+      <p class="text-[11px] text-center text-stone-400">
+        Data pendaftaran akan disimpan dan diproses oleh panitia.
+      </p>
+    </form>
+  </div>
+</div>
+
+{% include "partials/nordelia_ketentuan_modal.html" %}
+
+{% include "partials/nordelia_success.html" %}
+{% include "partials/nordelia_jurusan_modal.html" %}
+
+<script id="nordelia-ketentuan-json" type="application/json">{{ (ketentuan_detail or {}) | tojson | safe }}</script>
+<script id="nordelia-formats-json" type="application/json">{{ format_registrasi | tojson | safe }}</script>
+<script id="nordelia-cabang-json" type="application/json">{{ cabang_lomba | tojson | safe }}</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const modalReg = document.getElementById("modal-register");
+  const closeRegBtn = document.getElementById("btn-close-register-modal");
+  const formSubTitle = document.getElementById("form-sub-title");
+  const inputCabangId = document.getElementById("input-cabang-id");
+  const quotaBanner = document.getElementById("form-quota-banner");
+  const dynamicFormFields = document.getElementById("dynamic-form-fields");
+  const formAlert = document.getElementById("form-alert");
+  const regForm = document.getElementById("nordelia-sub-reg-form");
+
+  const formatList = JSON.parse(document.getElementById("nordelia-formats-json").textContent);
+  const cabangList = JSON.parse(document.getElementById("nordelia-cabang-json")?.textContent || "[]");
+
+  const olimpiade9DanAI = [
+    "olimpiade-matematika", "olimpiade-fisika", "olimpiade-biologi", "olimpiade-kimia",
+    "olimpiade-informatika", "olimpiade-kebumian", "olimpiade-astronomi", "olimpiade-geografi",
+    "olimpiade-ekonomi", "olimpiade-ai"
+  ];
+
+
+  // =========================================================================
+  // MODAL KETENTUAN LOMBA HANDLER
+  // =========================================================================
+  const modalKetentuan = document.getElementById("modal-ketentuan");
+  const closeKetentuanBtn = document.getElementById("btn-close-ketentuan-modal");
+  const closeKetentuanFooterBtn = document.getElementById("btn-close-ketentuan-footer");
+  const ketentuanTitle = document.getElementById("ketentuan-modal-title");
+  const ketentuanCategoryBadge = document.getElementById("ketentuan-category-badge");
+  const ketentuanMetaBox = document.getElementById("ketentuan-meta-box");
+  const ketentuanSections = document.getElementById("ketentuan-sections-container");
+  const ketentuanGformBtn = document.getElementById("ketentuan-modal-gform-btn");
+
+  let ketentuanData = {};
+  try {
+    ketentuanData = JSON.parse(document.getElementById("nordelia-ketentuan-json")?.textContent || "{}");
+  } catch(e) {
+    console.error("Gagal parse ketentuan data:", e);
+  }
+
+  function openKetentuanModal(cabangId, fallbackName) {
+    const k = ketentuanData[cabangId];
+    if (!k) {
+      const cb = (cabangList || []).find(c => c.id === cabangId);
+      if (cb) {
+        ketentuanTitle.textContent = "Ketentuan " + (cb.name || fallbackName);
+        ketentuanCategoryBadge.textContent = cb.category ? cb.category.toUpperCase() : "LOMBA";
+        ketentuanMetaBox.innerHTML = `
+          <div class="text-xs text-stone-300">
+            <strong>Lokasi:</strong> ${cb.tempat || '-'}<br>
+            <strong>PIC:</strong> ${cb.pic || '-'}
+          </div>
+        `;
+        ketentuanSections.innerHTML = "";
+        if (cb.gform_url) {
+          ketentuanGformBtn.href = cb.gform_url;
+          ketentuanGformBtn.classList.remove("hidden");
+        } else {
+          ketentuanGformBtn.classList.add("hidden");
+        }
+        modalKetentuan.classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+      }
+      return;
+    }
+
+    ketentuanTitle.textContent = k.title || ("Ketentuan " + fallbackName);
+    ketentuanCategoryBadge.textContent = k.category || "FESTIVAL BULAN BAHASA";
+
+    let metaHtml = `
+      <div class="space-y-2 text-xs text-stone-200">
+        <div class="flex items-start gap-2">
+          <span class="px-2 py-0.5 rounded bg-[#F5D061]/20 text-[#FDE68A] font-black text-[10px] uppercase shrink-0">Tema</span>
+          <span class="font-bold text-white italic">“${k.tema}”</span>
+        </div>
+        ${k.deadline ? `
+          <div class="flex items-center gap-2 text-[11px] text-[#FDE68A] pt-1">
+            <svg class="w-3.5 h-3.5 text-[#F5D061] shrink-0"><use href="#i-calendar"></use></svg>
+            <span><strong>Batas Pengumpulan:</strong> ${k.deadline}</span>
+          </div>
+        ` : ''}
+        ${k.biaya ? `
+          <div class="flex items-center gap-2 text-[11px] text-emerald-300">
+            <span class="font-bold">Biaya:</span> <span>${k.biaya}</span>
+          </div>
+        ` : ''}
+        ${k.durasi ? `
+          <div class="flex items-center gap-2 text-[11px] text-sky-300">
+            <span class="font-bold">Durasi:</span> <span>${k.durasi}</span>
+          </div>
+        ` : ''}
+        ${k.contact_person ? `
+          <div class="flex flex-wrap items-center gap-2 text-[11px] text-stone-300 pt-1.5 border-t border-white/10">
+            <span><strong>Narahubung (CP):</strong> ${k.contact_person.name}</span>
+            <a href="${k.contact_person.wa_url}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold hover:bg-emerald-500/30 transition-colors">
+              Chat WA (${k.contact_person.phone}) &rarr;
+            </a>
+          </div>
+        ` : ''}
+      </div>
+    `;
+    ketentuanMetaBox.innerHTML = metaHtml;
+
+    let secHtml = "";
+    (k.sections || []).forEach(sec => {
+      secHtml += `
+        <div class="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2.5">
+          <div class="flex items-center justify-between gap-2">
+            <h4 class="text-sm font-bold text-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#F5D061]"></span>
+              ${sec.heading}
+            </h4>
+            ${sec.badge ? `<span class="text-[10px] px-2.5 py-0.5 rounded-full bg-white/10 text-[#FDE68A] font-semibold border border-white/10">${sec.badge}</span>` : ''}
+          </div>
+          <ul class="space-y-2 pl-1 text-xs text-stone-300">
+            ${sec.items.map(item => `
+              <li class="flex items-start gap-2.5">
+                <span class="text-[#FDE68A] mt-1 shrink-0">✦</span>
+                <span class="leading-relaxed">${item}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      `;
+    });
+    ketentuanSections.innerHTML = secHtml;
+
+    const hasGform = !!(k.gform_url || (cb && cb.is_external_gform && cb.gform_url));
+    const modalEmailNotice = document.getElementById("ketentuan-modal-email-notice");
+    const modalInAppRegBtn = document.getElementById("ketentuan-modal-inapp-reg-btn");
+
+    if (hasGform) {
+      ketentuanGformBtn.href = k.gform_url || (cb && cb.gform_url) || "https://forms.google.com";
+      ketentuanGformBtn.classList.remove("hidden");
+      if (modalEmailNotice) modalEmailNotice.classList.remove("hidden");
+      if (modalInAppRegBtn) modalInAppRegBtn.classList.add("hidden");
+    } else {
+      ketentuanGformBtn.classList.add("hidden");
+      if (modalEmailNotice) modalEmailNotice.classList.add("hidden");
+      if (modalInAppRegBtn) {
+        modalInAppRegBtn.classList.remove("hidden");
+        modalInAppRegBtn.onclick = () => {
+          closeKetentuanModal();
+          openRegisterModal(cabangId, fallbackName);
+        };
+      }
+    }
+
+    const juknisBtn = document.getElementById("ketentuan-modal-juknis-btn");
+    const juknisUrl = k.juknis_url || (cb && cb.juknis_url) || "";
+    if (juknisBtn) {
+      if (juknisUrl) {
+        juknisBtn.href = juknisUrl;
+        juknisBtn.classList.remove("hidden");
+      } else {
+        juknisBtn.classList.add("hidden");
+      }
+    }
+
+    modalKetentuan.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closeKetentuanModal() {
+    modalKetentuan?.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  document.querySelectorAll("[data-open-ketentuan]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      openKetentuanModal(btn.getAttribute("data-open-ketentuan"), btn.getAttribute("data-sub-name"));
+    });
+  });
+
+  closeKetentuanBtn?.addEventListener("click", closeKetentuanModal);
+  closeKetentuanFooterBtn?.addEventListener("click", closeKetentuanModal);
+  modalKetentuan?.addEventListener("click", (e) => {
+    if (e.target === modalKetentuan) closeKetentuanModal();
+  });
+
+  function openRegisterModal(subId, subName) {
+    inputCabangId.value = subId;
+    formSubTitle.textContent = subName;
+
+    const isOlimpOrAI = !subId.includes("bahasa") && !subName.toLowerCase().includes("bahasa") && !subId.includes("desain") && !subId.includes("poster") && (olimpiade9DanAI.includes(subId) || (subId.includes("olimpiade") && !subId.includes("bahasa")) || subId === "ai" || subId === "olimpiade-ai" || subName.toLowerCase().includes("artifisial"));
+    quotaBanner.classList.toggle("hidden", !isOlimpOrAI);
+
+    // Tentukan format type sesuai Sheet 2
+    let fmtKey = "olimpiade_akademik";
+    let cMatch = cabangList.find(x => x.id === subId);
+    if (!cMatch) {
+      cMatch = cabangList.find(x => 
+        ((subId === "ai" || subId === "olimpiade-ai") && (x.id.includes("ai") || x.name.toLowerCase().includes("artifisial"))) ||
+        x.name.toLowerCase().includes(subId.toLowerCase())
+      );
+    }
+
+    const regCount = (cMatch && typeof cMatch.registered_count === "number") ? cMatch.registered_count : 0;
+    const isLit = (cMatch && cMatch.is_literasi) || subName.toLowerCase().startsWith("literasi") || subId.startsWith("literasi");
+    
+    let quotaDisplay = "";
+    if (isOlimpOrAI) {
+      const rem = (cMatch && typeof cMatch.remaining_quota === "number") ? cMatch.remaining_quota : Math.max(0, 20 - regCount);
+      const isFull = rem <= 0 || (cMatch && cMatch.is_full);
+      quotaDisplay = `<span class="${isFull ? 'text-rose-400' : 'text-amber-300'} font-bold">${isFull ? 'Kuota Penuh (20/20)' : 'Sisa ' + rem + ' dari 20 Kuota'}</span>`;
+    } else {
+      quotaDisplay = `<span class="text-emerald-400 font-bold">Kuota Terbuka</span>`;
+    }
+
+    let minMaxDisplay = "";
+    if (isOlimpOrAI) {
+      minMaxDisplay = `<span class="text-amber-300 font-bold">Maks. 20 Peserta</span>`;
+    }
+
+    const ruleBox = document.getElementById("form-sub-rule-box");
+    if (ruleBox) {
+      const isTeam = !!(cMatch && (cMatch.is_team || cMatch.isTeam));
+      const unitText = isTeam ? "Tim" : "Orang";
+      const labelText = isTeam ? "Tim Terdaftar:" : "Terdaftar:";
+
+      ruleBox.innerHTML = `
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-stone-400">Lokasi: ${(cMatch && cMatch.tempat) ? cMatch.tempat : '-'}</span>
+          ${minMaxDisplay}
+        </div>
+        <div class="flex items-center justify-between py-1 my-1 border-t border-b border-white/10 text-[11px]">
+          <span class="text-stone-300">${labelText} <strong class="text-white" id="sub-modal-live-reg-count">${regCount} ${unitText}</strong></span>
+          <span id="sub-modal-live-quota-wrapper">${quotaDisplay}</span>
+        </div>
+      `;
+
+      const hasKetentuan = !!(ketentuanData && (ketentuanData[subId] || (cMatch && ketentuanData[cMatch.id]) || (subId.includes('ai') && ketentuanData['olimpiade-ai'])));
+      const juknisUrl = (cMatch && cMatch.juknis_url) || ((subId === 'ai' || subId === 'olimpiade-ai') ? 'https://drive.google.com/drive/folders/1QjuO7vX9MhtvZt92LAbHpCFfwKd3IPGF?usp=drive_link' : '');
+      if (juknisUrl) {
+        ruleBox.innerHTML += `
+          <div class="mt-2.5 pt-2 border-t border-white/10">
+            <a href="${juknisUrl}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl text-xs font-bold text-[#FDE68A] bg-white/[0.06] hover:bg-white/[0.12] border border-[#F5D061]/35 hover:border-[#F5D061]/70 transition-all flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01]">
+              <svg class="w-4 h-4 text-[#F5D061]"><use href="#i-sparkles"></use></svg>
+              <span>Lihat Ketentuan & Juknis Lengkap</span>
+            </a>
+          </div>
+        `;
+      } else if (hasKetentuan) {
+        ruleBox.innerHTML += `
+          <div class="mt-2.5 pt-2 border-t border-white/10">
+            <button type="button" id="btn-open-sub-juknis-from-reg" class="w-full py-2.5 px-3 rounded-xl text-xs font-bold text-[#FDE68A] bg-white/[0.06] hover:bg-white/[0.12] border border-[#F5D061]/35 hover:border-[#F5D061]/70 transition-all flex items-center justify-center gap-2 shadow-sm hover:scale-[1.01]">
+              <svg class="w-4 h-4 text-[#F5D061]"><use href="#i-sparkles"></use></svg>
+              <span>Lihat Ketentuan & Juknis Lengkap</span>
+            </button>
+          </div>
+        `;
+        setTimeout(() => {
+          const btnJuknis = document.getElementById("btn-open-sub-juknis-from-reg");
+          if (btnJuknis) {
+            btnJuknis.onclick = () => {
+              closeRegisterModal();
+              openKetentuanModal(cMatch ? cMatch.id : subId, (cMatch && cMatch.name) ? cMatch.name : subName);
+            };
+          }
+        }, 10);
+      }
+
+      // Ambil live count & kuota langsung dari real-time database via API
+      fetch(`/api/nordelia/cabang-quota?cabang_id=${encodeURIComponent(subId)}`)
+        .then((res) => res.json())
+        .then((live) => {
+          if (!live || typeof live.count !== "number") return;
+          const regEl = document.getElementById("sub-modal-live-reg-count");
+          const liveIsTeam = (typeof live.is_team !== "undefined") ? !!live.is_team : isTeam;
+          const liveUnit = liveIsTeam ? "Tim" : "Orang";
+          if (regEl) regEl.textContent = `${live.count} ${liveUnit}`;
+          const qWrap = document.getElementById("sub-modal-live-quota-wrapper");
+          if (qWrap) {
+            if (live.is_limited) {
+              const isFull = live.is_full;
+              const rem = live.remaining_quota != null ? live.remaining_quota : Math.max(0, 20 - live.count);
+              qWrap.innerHTML = `<span class="${isFull ? 'text-rose-400' : 'text-[#FF8533]'} font-bold">${isFull ? 'Kuota Penuh (20/20)' : 'Sisa ' + rem + ' dari 20 Kuota'}</span>`;
+            } else {
+              qWrap.innerHTML = `<span class="text-white font-bold">Kuota Terbuka</span>`;
+            }
+          }
+          if (live.is_full) {
+            const btnSubmit = document.getElementById("btn-submit-registration");
+            if (btnSubmit) {
+              btnSubmit.disabled = true;
+              btnSubmit.classList.add("opacity-50", "cursor-not-allowed");
+              btnSubmit.innerHTML = `<span><strong>Kuota Penuh (20/20)</strong></span>`;
+            }
+          }
+        })
+        .catch((err) => console.warn("Live sheet quota check:", err));
+    }
+    if (cMatch && cMatch.format_type) {
+      fmtKey = cMatch.format_type;
+    } else if (subId.includes("tari")) {
+      fmtKey = "tari_kreasi";
+    } else if (subId.includes("nsdc") || subId.includes("inggris")) {
+      fmtKey = "debat_nsdc";
+    } else if (subId.includes("ldbi") || subId.includes("indonesia") || subId.includes("debat")) {
+      fmtKey = "debat_ldbi";
+    } else if (subId.includes("vokal") || subId.includes("menyanyi")) {
+      fmtKey = "vokal_solo";
+    } else if (subId.includes("cosplay")) {
+      fmtKey = "cosplay";
+    } else if (subId.includes("basket")) {
+      fmtKey = "basket";
+    } else if (subId.includes("futsal")) {
+      fmtKey = "futsal";
+    } else if (subId.includes("voli")) {
+      fmtKey = "voli";
+    } else if (subId.includes("komik") || subId.includes("poster") || subId.includes("foto") || subId.includes("kriya")) {
+      fmtKey = "komik_digital";
+    }
+
+    const fmt = formatList[fmtKey] || formatList["olimpiade_akademik"];
+    
+    let html = "";
+    fmt.fields.forEach(field => {
+      if (field.type === "select") {
+        const opts = (field.options || []).map(o => `<option value="${o}" class="bg-stone-900 text-white">${o}</option>`).join("");
+        html += `
+          <div>
+            <label class="block text-xs font-bold text-stone-200 mb-1">${field.label} ${field.required ? '<span class="text-rose-400">*</span>' : ''}</label>
+            <select name="${field.name}" ${field.required ? 'required' : ''}
+                    class="w-full px-3.5 py-2.5 rounded-xl bg-stone-900 border border-white/20 text-xs text-white focus:outline-none focus:border-[#FBBF24]">
+              <option value="" disabled selected class="text-stone-500">${field.placeholder || '-- Pilih --'}</option>
+              ${opts}
+            </select>
+          </div>
+        `;
+      } else if (field.type === "textarea") {
+        html += `
+          <div>
+            <label class="block text-xs font-bold text-stone-200 mb-1">${field.label} ${field.required ? '<span class="text-rose-400">*</span>' : ''}</label>
+            <textarea name="${field.name}" ${field.required ? 'required' : ''} placeholder="${field.placeholder}" rows="3"
+                      class="w-full px-3.5 py-2.5 rounded-xl bg-stone-900 border border-white/20 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#FBBF24]"></textarea>
+          </div>
+        `;
+      } else {
+        html += `
+          <div>
+            <label class="block text-xs font-bold text-stone-200 mb-1">${field.label} ${field.required ? '<span class="text-rose-400">*</span>' : ''}</label>
+            <input type="${field.type}" name="${field.name}" ${field.required ? 'required' : ''} placeholder="${field.placeholder}"
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-stone-900 border border-white/20 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#FBBF24]" />
+          </div>
+        `;
+      }
+    });
+
+    dynamicFormFields.innerHTML = html;
+    formAlert.classList.add("hidden");
+    modalReg.classList.remove("hidden");
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closeRegisterModal() {
+    modalReg.classList.add("hidden");
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  document.querySelectorAll("[data-register-sub]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      openRegisterModal(btn.getAttribute("data-register-sub"), btn.getAttribute("data-sub-name"));
+    });
+  });
+
+  closeRegBtn?.addEventListener("click", closeRegisterModal);
+  modalReg?.addEventListener("click", (e) => {
+    if (e.target === modalReg) closeRegisterModal();
+  });
+
+  // Handle Form Submission
+  regForm?.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const btnSubmit = document.getElementById("btn-submit-registration");
+    const originalText = btnSubmit.innerHTML;
+
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = `
+      <svg class="w-4 h-4 animate-spin text-black" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"></circle><path fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+      <span>Memproses Pendaftaran...</span>
+    `;
+
+    try {
+      const formData = new FormData(regForm);
+      const payload = {};
+      formData.forEach((val, key) => { payload[key] = val; });
+
+      const res = await fetch("/api/nordelia/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        closeRegisterModal();
+        regForm.reset();
+        if (typeof window.showNordeliaRegisteredPopup === "function") {
+          window.showNordeliaRegisteredPopup({
+            participantName: data.participant_name || payload.nama_lengkap || payload.nama_tim || payload.nama,
+            cabangName: data.cabang_name,
+            groupLink: data.group_link,
+            groupLabel: data.group_label,
+          });
+        } else {
+          window.location.reload();
+        }
+
+      } else {
+        formAlert.className = "p-3 rounded-xl mb-4 text-xs font-bold bg-rose-950/80 text-rose-300 border border-rose-500/40";
+        formAlert.textContent = data.error || "Gagal memproses pendaftaran. Silakan coba lagi.";
+        formAlert.classList.remove("hidden");
+      }
+    } catch (err) {
+      formAlert.className = "p-3 rounded-xl mb-4 text-xs font-bold bg-rose-950/80 text-rose-300 border border-rose-500/40";
+      formAlert.textContent = "Terjadi kendala jaringan: " + err.message;
+      formAlert.classList.remove("hidden");
+    } finally {
+      btnSubmit.disabled = false;
+      btnSubmit.innerHTML = originalText;
+    }
+  });
+
+
+  // Auto open jika hanya 1 sub event (misal Literasi Numerasi)
+  const allSubBtns = document.querySelectorAll("[data-register-sub]");
+  let justRegistered = false;
+  try { justRegistered = sessionStorage.getItem("nordelia_just_registered") === "1"; sessionStorage.removeItem("nordelia_just_registered"); } catch (e) {}
+  if (allSubBtns.length === 1 && !justRegistered) {
+    setTimeout(() => {
+      allSubBtns[0].click();
+    }, 250);
+  }
+
+});
+</script>
+{% endblock %}

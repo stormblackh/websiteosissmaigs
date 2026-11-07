@@ -1,0 +1,621 @@
+{
+  "event": {
+    "id": "nordelia",
+    "name": "NORDELIA",
+    "title": "Nordelia Festival",
+    "description": "Festival kompetisi akademik dan non-akademik terbesar SMA Ignatius Global School",
+    "banner": "images/nordelia_banner.jpg",
+    "date": "TBD",
+    "location": "SMA Ignatius Global School",
+    "registrationFormat": [
+      "Nama Lengkap",
+      "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+    ]
+  },
+  "categories": [
+    {
+      "id": "literasi-numerasi",
+      "name": "LITERASI NUMERASI",
+      "hasSubEvents": false,
+      "registrationFormat": [
+        "Nama Lengkap",
+        "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+      ],
+      "juknis_url": "https://drive.google.com/drive/folders/1t1EXwSke9bOO4umHiqkWTLiUVcsMiPra?usp=drive_link"
+    },
+    {
+      "id": "literasi-bahasa-indonesia",
+      "name": "LITERASI BAHASA INDONESIA",
+      "hasSubEvents": false,
+      "registrationFormat": [
+        "Nama Lengkap",
+        "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+      ],
+      "juknis_url": "https://drive.google.com/drive/folders/1t1EXwSke9bOO4umHiqkWTLiUVcsMiPra?usp=drive_link"
+    },
+    {
+      "id": "literasi-science",
+      "name": "LITERASI SCIENCE",
+      "hasSubEvents": false,
+      "registrationFormat": [
+        "Nama Lengkap",
+        "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+      ],
+      "juknis_url": "https://drive.google.com/drive/folders/1t1EXwSke9bOO4umHiqkWTLiUVcsMiPra?usp=drive_link"
+    },
+    {
+      "id": "osn",
+      "name": "OSN",
+      "hasSubEvents": true,
+      "description": "Olimpiade Sains Nasional (9 Cabang Sains & Humaniora)",
+      "subEvents": [
+        {
+          "id": "olimpiade-matematika",
+          "name": "MATEMATIKA",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/ti/g/xa5d6nD-2K",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-fisika",
+          "name": "FISIKA",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/ti/g/vf7f4gVmgC",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-kimia",
+          "name": "KIMIA",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/ti/g/-MHK59SUdX",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-biologi",
+          "name": "BIOLOGI",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/ti/g/Lq_pdmvce8",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-astronomi",
+          "name": "ASTRONOMI",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/ti/g/HULA5NXBJb",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-geografi",
+          "name": "GEOGRAFI",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/R/ti/g/hVm93rmqsg",
+          "pic": "Ms. Desy",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-informatika",
+          "name": "INFORMATIKA",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/R/ti/g/bCDDgAgzmz",
+          "pic": "Sir Sepri",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-ekonomi",
+          "name": "EKONOMI",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/R/ti/g/efHVj-Mc8A",
+          "pic": "Ms. Prisca, Natalia",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-kebumian",
+          "name": "KEBUMIAN",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/ti/g/j2hfeWDyVt",
+          "juknis_url": "https://docs.google.com/document/d/1Dm89vEceGjFq75nsIHB_qBgeX-IZslvrUpy_OmixNDc/edit?usp=sharing"
+        }
+      ]
+    },
+    {
+      "id": "olimpiade-ai",
+      "name": "OLIMPIADE KECERDASAN ARTIFISIAL",
+      "hasSubEvents": false,
+      "juknis_url": "https://drive.google.com/drive/folders/1QjuO7vX9MhtvZt92LAbHpCFfwKd3IPGF?usp=drive_link",
+      "registrationFormat": [
+        "Nama Lengkap",
+        "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+      ]
+    },
+    {
+      "id": "riset-inovasi",
+      "name": "RISET & INOVASI",
+      "hasSubEvents": true,
+      "description": "Olimpiade Penelitian Siswa (OPSI) & Festival Inovasi Kewirausahaan (FIKSI). Pendaftaran resmi via Google Form.",
+      "subEvents": [
+        {
+          "id": "opsi",
+          "name": "OPSI (Olimpiade Penelitian Siswa)",
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/3ddQd5myu8mZSxSF6",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/R/ti/g/nJFGvpBBCE",
+          "pic": "Ms. Nisak dan Marla",
+          "juknis_url": "https://drive.google.com/drive/folders/1Mx_iljhr44fKL8N9xVx8pwwMWftKRhed?usp=sharing",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar."
+        },
+        {
+          "id": "fiksi",
+          "name": "FIKSI (Festival Inovasi & Kewirausahaan)",
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/gw5Tp6qejtkshQ599",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/R/ti/g/e3UfBDmz9v",
+          "pic": "Ms. Priti, Vina, Sir Ifaldi",
+          "juknis_url": "https://drive.google.com/drive/folders/1Mx_iljhr44fKL8N9xVx8pwwMWftKRhed?usp=sharing",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar."
+        }
+      ]
+    },
+    {
+      "id": "lomba-debat-indonesia",
+      "name": "LOMBA DEBAT",
+      "hasSubEvents": true,
+      "description": "Pilih jenis debat",
+      "subEvents": [
+        {
+          "id": "debat-bahasa-indonesia",
+          "name": "DEBAT BAHASA INDONESIA (LDBI)",
+          "registrationFormat": [
+            "Nama Tim",
+            "Asal Kelas Tim",
+            "Pembicara 1 (Nama & Kelas)",
+            "Pembicara 2 (Nama & Kelas)",
+            "Pembicara 3 (Nama & Kelas)",
+            "No. WhatsApp / Kontak"
+          ],
+          "is_external_gform": true,
+          "gform_url": "https://docs.google.com/forms/d/e/1FAIpQLSdRda2GTYJLbgLETVedIjf88liRiDereOR-UVqfrUFI2Z9L0g/viewform",
+          "juknis_url": "https://drive.google.com/file/d/1SWIr93HronVi4S6NmA4KJzHxYVX13IGr/view?usp=sharing",
+          "pic": "Sir Pebrian",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar."
+        },
+        {
+          "id": "debat-bahasa-inggris",
+          "name": "DEBAT BAHASA INGGRIS (NSDC)",
+          "registrationFormat": [
+            "Nama Tim / Team Name",
+            "Asal Kelas Tim",
+            "1st Speaker (Nama & Kelas)",
+            "2nd Speaker (Nama & Kelas)",
+            "3rd Speaker (Nama & Kelas)",
+            "No. WhatsApp / Kontak"
+          ],
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/CAkMHSi7Fd1QRKWc9",
+          "juknis_url": "https://drive.google.com/drive/folders/1rmuC3J1dxD9nISqjL4z6h9VNP9A_CnYE",
+          "group_link": "https://line.me/R/ti/g/tf-h4h7_Az",
+          "pic": "Ms. Ninis",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar."
+        }
+      ]
+    },
+    {
+      "id": "lomba-bahasa-asing",
+      "name": "LOMBA BAHASA ASING",
+      "hasSubEvents": true,
+      "description": "Pilih cabang bahasa asing",
+      "subEvents": [
+        {
+          "id": "olimpiade-bahasa-jerman",
+          "name": "OLIMPIADE BAHASA JERMAN",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "juknis_url": "https://docs.google.com/document/d/155VKv43luGJSxaBUwmYJH_zqnzrrELbHOZHplhXIS0s/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-bahasa-jepang",
+          "name": "OLIMPIADE BAHASA JEPANG",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "juknis_url": "https://drive.google.com/file/d/1ZDyVwFCiPzqM9W2iX-YIkE60qgKY9Xqj/view?usp=drive_link"
+        },
+        {
+          "id": "olimpiade-bahasa-korea",
+          "name": "OLIMPIADE BAHASA KOREA",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "juknis_url": "https://docs.google.com/document/d/1PJMT9igQ6Kvpdu8b4yacLhwi5V0A4QsZ/edit?usp=sharing&ouid=109865866449396565860&rtpof=true&sd=true"
+        },
+        {
+          "id": "olimpiade-bahasa-mandarin",
+          "name": "OLIMPIADE BAHASA MANDARIN",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "juknis_url": "https://docs.google.com/document/d/1IkCzdIUQt7ESj-vVM4inS7H-7MNFmVM4/edit?usp=sharing&ouid=117492933101897541630&rtpof=true&sd=true"
+        },
+        {
+          "id": "olimpiade-bahasa-spanyol",
+          "name": "OLIMPIADE BAHASA SPANYOL",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "juknis_url": "https://docs.google.com/document/d/1tI_1CLoQjiEna9cXHBFV3DQ6aZ7X6Rcjha2x5X0MJZw/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-bahasa-prancis",
+          "name": "OLIMPIADE BAHASA PRANCIS",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "juknis_url": "https://docs.google.com/document/d/1mvKAOo6QdYukbRAN0XyLzpfImzgokxubbpF7r96I8yI/edit?usp=sharing"
+        },
+        {
+          "id": "olimpiade-bahasa-arab",
+          "name": "OLIMPIADE BAHASA ARAB",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "juknis_url": "https://docs.google.com/document/d/1-EUHZuZrQrDiV8v4-pTUWTtS0AP1_QT4CbwczQ3Q4Wc/edit?usp=sharing"
+        },
+        {
+          "id": "kaligrafi-bahasa-arab",
+          "name": "KALIGRAFI BAHASA ARAB",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "juknis_url": "https://docs.google.com/document/d/1npb_kiT47lK2RBBTUGRt4cXKaXlISgTZHWkjxf7L8K8/edit?usp=sharing"
+        },
+        {
+          "id": "menyanyi-bahasa-mandarin",
+          "name": "LOMBA MENYANYI BAHASA MANDARIN",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "tempat": "Mayor",
+          "juknis_url": "https://docs.google.com/document/d/1Zj1HYuwKvdb3vpLfOivmdV2mfwX2p9Ih/edit"
+        },
+        {
+          "id": "story-telling-korea",
+          "name": "STORY TELLING KOREA",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)"
+          ],
+          "group_link": "https://line.me/ti/g/tcFLBqfME2",
+          "juknis_url": "https://docs.google.com/document/d/1QFSPQU3nLSG3tgS3wDDMN3xo5MLT_gqo/edit?usp=sharing&ouid=110241978970163482491&rtpof=true&sd=true"
+        }
+      ]
+    },
+    {
+      "id": "cosplay",
+      "name": "COSPLAY",
+      "hasSubEvents": false,
+      "description": "Kompetisi kreasi kostum, tata rias, dan aksi panggung karakter anime, manga, komik, atau game.",
+      "registrationFormat": [
+        "Nama Lengkap",
+        "Kelas (Cth: 10.1 CGC, 10.2 MAYOR)",
+        "Nama Karakter",
+        "Asal Serial / Game"
+      ],
+      "juknis_url": "https://docs.google.com/document/d/1PEyHMYFdKZuN_hd_xsaHoqAQMseraGt2/edit?usp=sharing&ouid=112213581201922691450&rtpof=true&sd=true"
+    },
+    {
+      "id": "fls3n",
+      "name": "FLS3N",
+      "hasSubEvents": true,
+      "description": "Pilih cabang FLS3N",
+      "subEvents": [
+        {
+          "id": "baca-puisi",
+          "name": "BACA PUISI",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/rv4NHtgGQs",
+          "juknis_url": "https://bit.ly/JuknisSastraIGS2026",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "cipta-puisi",
+          "name": "CIPTA PUISI",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/yAuEw6Zz65",
+          "juknis_url": "https://bit.ly/JuknisSastraIGS2026",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "jurnalistik",
+          "name": "JURNALISTIK",
+          "is_external_gform": true,
+          "gform_url": "https://docs.google.com/forms/d/e/1FAIpQLSfyLRFiI2eID99KkUe9KEwGfz_4XXLu2fWWfJ_vxmSTnpzZEA/viewform?usp=publish-editor",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/rPVWg2xsuB",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/file/d/1kf0ZmBqNyJzBBvQE5XfeuuyWcVXj6mzu/view?usp=drivesdk",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "menulis-cerpen",
+          "name": "MENULIS CERITA PENDEK",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/Y45atM5JVv",
+          "juknis_url": "https://bit.ly/JuknisSastraIGS2026",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "monolog",
+          "name": "MONOLOG",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/vvXXSwa5Mt",
+          "juknis_url": "https://bit.ly/JuknisSastraIGS2026",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "cipta-lagu",
+          "name": "CIPTA LAGU",
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/MGVWmKZ5uZ5sqeGc8",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/nE-VFvcF3x",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/drive/folders/1zapJ5mny5D9pbecFDW6eIllNispLAb8x?usp=drive_link",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "desain-poster",
+          "name": "DESAIN POSTER",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas",
+            "Link Portofolio"
+          ],
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/MGVWmKZ5uZ5sqeGc8",
+          "group_link": "https://line.me/ti/g/g-U6bYGFEs",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/drive/folders/1zapJ5mny5D9pbecFDW6eIllNispLAb8x?usp=drive_link",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "fotografi",
+          "name": "FOTOGRAFI",
+          "is_external_gform": true,
+          "gform_url": "https://docs.google.com/forms/d/e/1FAIpQLSfyLRFiI2eID99KkUe9KEwGfz_4XXLu2fWWfJ_vxmSTnpzZEA/viewform?usp=publish-editor",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas",
+            "Link Portofolio"
+          ],
+          "group_link": "https://line.me/ti/g/g-U6bYGFEs",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://docs.google.com/document/d/1C2A_UifBMAxa2EoJ2yQzcO-UiRZTjtMq-b2oPgVS5xc/edit?usp=sharing",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "solo-gitar",
+          "name": "INSTRUMEN SOLO GITAR",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/MGVWmKZ5uZ5sqeGc8",
+          "group_link": "https://line.me/ti/g/ZXQuZzQG8A",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/drive/folders/1zapJ5mny5D9pbecFDW6eIllNispLAb8x?usp=drive_link",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "vokal-putri",
+          "name": "MENYANYI SOLO PUTRI",
+          "registrationFormat": [
+            "Nama & Kategori",
+            "Kelas",
+            "Link Lagu Penyisihan",
+            "Link Lagu Final"
+          ],
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/MGVWmKZ5uZ5sqeGc8",
+          "group_link": "https://line.me/ti/g/82ZajrAe_e",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/drive/folders/1zapJ5mny5D9pbecFDW6eIllNispLAb8x?usp=drive_link",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "vokal-putra",
+          "name": "MENYANYI SOLO PUTRA",
+          "registrationFormat": [
+            "Nama & Kategori",
+            "Kelas",
+            "Link Lagu Penyisihan",
+            "Link Lagu Final"
+          ],
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/MGVWmKZ5uZ5sqeGc8",
+          "group_link": "https://line.me/ti/g/82ZajrAe_e",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/drive/folders/1zapJ5mny5D9pbecFDW6eIllNispLAb8x?usp=drive_link",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "kriya",
+          "name": "KRIYA",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/MGVWmKZ5uZ5sqeGc8",
+          "group_link": "https://line.me/ti/g/TkPrU9CGf4",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/drive/folders/1zapJ5mny5D9pbecFDW6eIllNispLAb8x?usp=drive_link",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "komik-digital",
+          "name": "KOMIK DIGITAL",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas",
+            "Link Portofolio"
+          ],
+          "is_external_gform": true,
+          "gform_url": "https://forms.gle/MGVWmKZ5uZ5sqeGc8",
+          "group_link": "https://line.me/ti/g/J4f9wa-v4f",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/drive/folders/1zapJ5mny5D9pbecFDW6eIllNispLAb8x?usp=drive_link",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "film-pendek",
+          "name": "FILM PENDEK",
+          "is_external_gform": true,
+          "gform_url": "https://docs.google.com/forms/d/e/1FAIpQLSfyLRFiI2eID99KkUe9KEwGfz_4XXLu2fWWfJ_vxmSTnpzZEA/viewform?usp=publish-editor",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas",
+            "Link Portofolio"
+          ],
+          "group_link": "https://line.me/ti/g/Y45atM5JVv",
+          "email_notice": "Gunakan akun email resmi sekolah untuk mendaftar.",
+          "juknis_url": "https://drive.google.com/file/d/1A2YPw6YBF_d7AaZGcKqjhBYDBQJpby-K/view?usp=drivesdk",
+          "tempat": "Mayor"
+        },
+        {
+          "id": "tari-kreasi",
+          "name": "TARI KREASI",
+          "registrationFormat": [
+            "Nama Tim",
+            "Nama Anggota & Kelas (2 atau lebih)",
+            "Asal Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/mCh8SGDs6N",
+          "tempat": "Mayor",
+          "juknis_url": "https://bit.ly/4f7IZjE"
+        }
+      ]
+    },
+    {
+      "id": "o2sn",
+      "name": "O2SN",
+      "hasSubEvents": true,
+      "description": "Kompetisi O2SN (silat, atletik, basket, futsal, catur) menguji sportivitas dan stamina atlet muda.",
+      "subEvents": [
+        {
+          "id": "silat",
+          "name": "SILAT",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/FGEFfKk4gY",
+          "juknis_url": "https://docs.google.com/document/d/16SjmYqHPy9OsnpafVkX2Y5WABcbC87QA/edit?usp=drivesdk&ouid=104445939683954865300&rtpof=true&sd=true"
+        },
+        {
+          "id": "atletik",
+          "name": "ATLETIK",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/pMyrkYrbUH",
+          "juknis_url": "https://drive.google.com/file/d/1aqCD9lcAJb1FzR1h5YgMXyE0mzzo29Dh/view?usp=drivesdk"
+        },
+        {
+          "id": "basket",
+          "name": "BASKET",
+          "registrationFormat": [
+            "Nama Anggota 1-2-3-Cadangan",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/dbudjYkhBP",
+          "juknis_url": "https://drive.google.com/file/d/1n60A7xfHqTzIqyOCYNSuyz68w91PfnOs/view?usp=drivesdk"
+        },
+        {
+          "id": "futsal",
+          "name": "FUTSAL",
+          "registrationFormat": [
+            "Nama Anggota 1-2-3-4-5-Cadangan",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/ZA3_64qsVv",
+          "juknis_url": "https://docs.google.com/document/d/1_8DRxXPcVk9ex2HL2XAwhmoN7q1ykTuj/edit?usp=drivesdk&ouid=104445939683954865300&rtpof=true&sd=true"
+        },
+        {
+          "id": "catur",
+          "name": "CATUR",
+          "registrationFormat": [
+            "Nama Lengkap",
+            "Kelas"
+          ],
+          "group_link": "https://line.me/ti/g/rcke9_bpcU",
+          "juknis_url": "https://docs.google.com/document/d/1tVtY3Sq01xUjW_d86PE67Z7-F1M8kBlZ/edit?usp=drivesdk&ouid=104445939683954865300&rtpof=true&sd=true"
+        }
+      ],
+      "badge": "5 Cabang Lomba"
+    }
+  ]
+}

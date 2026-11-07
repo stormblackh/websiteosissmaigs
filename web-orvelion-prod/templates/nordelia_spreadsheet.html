@@ -1,0 +1,415 @@
+{% extends "base.html" %}
+{% block title %}Live Spreadsheet Pendaftaran | Nordelia 2026{% endblock %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+
+  <!-- Header Banner -->
+  <div class="rounded-3xl p-6 sm:p-8 border backdrop-blur-xl relative overflow-hidden"
+       style="background: linear-gradient(135deg, rgba(2,132,199,0.2) 0%, rgba(56,189,248,0.12) 50%, rgba(15,23,42,0.92) 100%); border-color: rgba(245, 208, 97, 0.35); box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px rgba(245,208,97,0.12);">
+    
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div class="space-y-3 max-w-2xl">
+        <div class="flex items-center gap-2">
+          <a href="/nordelia" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#38BDF8] hover:underline">
+            &larr; Kembali ke Beranda Nordelia
+          </a>
+          <span class="text-white/40">•</span>
+          <span class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-[#BAE6FD]">
+            <span class="w-2 h-2 rounded-full bg-[#38BDF8] animate-ping"></span>
+            Real-Time Google Sheets
+          </span>
+        </div>
+        
+        <h1 class="text-3xl sm:text-4xl font-black text-white">
+          Spreadsheet Pendaftaran <span class="bg-gradient-to-r from-[#BAE6FD] via-[#38BDF8] to-[#FF7A00] bg-clip-text text-transparent">Nordelia 2026</span>
+        </h1>
+        <p class="text-xs sm:text-sm text-stone-200">
+          Data pendaftaran peserta tersimpan dan terhubung secara real-time langsung ke database sistem resmi panitia OSIS.
+        </p>
+      </div>
+
+      <!-- Actions & External Links -->
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:block w-20 h-20 relative">
+          <img src="{{ url_for('static', filename='images/gumball.svg') }}" alt="Gumball" class="w-full h-full object-contain filter drop-shadow-md" decoding="async" />
+        </div>
+        <div class="space-y-2">
+          <a href="/api/nordelia/export.csv?category={{ selected_category }}"
+             class="px-5 py-3 rounded-2xl font-black text-xs uppercase tracking-wider text-[#0B1120] bg-gradient-to-r from-[#FDE68A] via-[#F5D061] to-[#E5B869] hover:brightness-110 shadow-lg flex items-center justify-center gap-2 transition-all hover:scale-105">
+            <svg class="w-4 h-4 text-black"><use href="#i-download"></use></svg>
+            <span>Unduh Rekap Peserta (CSV)</span>
+          </a>
+          <div class="flex items-center gap-2">
+            <a href="/nordelia/spreadsheet?sync=1{% if selected_category %}&category={{ selected_category }}{% endif %}{% if selected_cabang %}&cabang={{ selected_cabang }}{% endif %}"
+               class="flex-1 px-3 py-2 rounded-xl font-bold text-xs text-white bg-black/70 border border-white/20 hover:border-[#38BDF8]/60 flex items-center justify-center gap-1.5 transition-colors">
+              <svg class="w-3.5 h-3.5 text-[#38BDF8]"><use href="#i-refresh"></use></svg>
+              <span>Refresh Data</span>
+            </a>
+            <a href="/api/nordelia/format-pendaftaran.csv"
+               class="flex-1 px-3 py-2 rounded-xl font-bold text-xs text-[#FDE68A] bg-black/70 border border-[#F5D061]/30 hover:border-[#F5D061] flex items-center justify-center gap-1.5 transition-colors" title="Download Format Pendaftaran CSV Resmi">
+              <svg class="w-3.5 h-3.5 text-[#F5D061]"><use href="#i-download"></use></svg>
+              <span>Format CSV</span>
+            </a>
+            <a href="/nordelia/spreadsheet/logout" title="Kunci Akses / Logout Data OSIS"
+               class="px-3 py-2 rounded-xl font-bold text-xs text-rose-300 bg-rose-950/60 border border-rose-500/30 hover:bg-rose-900/80 flex items-center justify-center gap-1.5 transition-colors">
+              <svg class="w-3.5 h-3.5 text-rose-400"><use href="#i-shield"></use></svg>
+              <span>Kunci</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Stat Counters -->
+    <div class="grid grid-cols-2 sm:grid-cols-6 gap-3 mt-6 pt-6 border-t border-white/10 text-center font-mono">
+      <div class="p-3 rounded-2xl bg-black/60 border border-white/10">
+        <div class="text-xl sm:text-2xl font-black text-white">{{ summary.counts.total }}</div>
+        <div class="text-[10px] uppercase tracking-wider text-stone-400 font-sans">Total Peserta</div>
+      </div>
+      <div class="p-3 rounded-2xl bg-[#0284C7]/20 border border-[#38BDF8]/40">
+        <div class="text-xl sm:text-2xl font-black text-[#38BDF8]">{{ summary.counts.akademik }}</div>
+        <div class="text-[10px] uppercase tracking-wider text-stone-300 font-sans">Akademik</div>
+      </div>
+      <div class="p-3 rounded-2xl bg-[#FBBF24]/15 border border-[#FBBF24]/40">
+        <div class="text-xl sm:text-2xl font-black text-[#FBBF24]">{{ summary.counts.bahasa }}</div>
+        <div class="text-[10px] uppercase tracking-wider text-stone-300 font-sans">Bahasa</div>
+      </div>
+      <div class="p-3 rounded-2xl bg-white/10 border border-white/30">
+        <div class="text-xl sm:text-2xl font-black text-white">{{ summary.counts.seni }}</div>
+        <div class="text-[10px] uppercase tracking-wider text-stone-300 font-sans">Seni</div>
+      </div>
+      <div class="p-3 rounded-2xl bg-purple-500/15 border border-purple-400/40">
+        <div class="text-xl sm:text-2xl font-black text-purple-300">{{ summary.counts.cosplay or 0 }}</div>
+        <div class="text-[10px] uppercase tracking-wider text-stone-300 font-sans">Cosplay</div>
+      </div>
+      <div class="p-3 rounded-2xl bg-[#FF7A00]/15 border border-[#FF7A00]/40">
+        <div class="text-xl sm:text-2xl font-black text-[#FF7A00]">{{ summary.counts.olahraga }}</div>
+        <div class="text-[10px] uppercase tracking-wider text-stone-300 font-sans">Olahraga</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLASSIFICATION TABS & CONTROLS -->
+  <div class="space-y-3">
+    <div class="p-4 rounded-2xl bg-[#0F172A] border border-white/10 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1">
+        <a href="/nordelia/spreadsheet?category=semua"
+           class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap {% if selected_category == 'semua' and not selected_cabang %}bg-gradient-to-r from-[#0284C7] via-[#38BDF8] to-[#FF7A00] text-black{% else %}bg-black text-stone-300 hover:text-white border border-white/10{% endif %}">
+          Master Pendaftaran (Semua)
+        </a>
+        <a href="/nordelia/spreadsheet?category=akademik"
+           class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap {% if selected_category == 'akademik' and not selected_cabang %}bg-[#0284C7] text-white{% else %}bg-black text-[#38BDF8] hover:text-white border border-[#38BDF8]/40{% endif %}">
+          Akademik
+        </a>
+        <a href="/nordelia/spreadsheet?category=bahasa"
+           class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap {% if selected_category == 'bahasa' and not selected_cabang %}bg-[#FBBF24] text-black{% else %}bg-black text-[#38BDF8] hover:text-white border border-[#FBBF24]/40{% endif %}">
+          Bahasa
+        </a>
+        <a href="/nordelia/spreadsheet?category=seni"
+           class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap {% if selected_category == 'seni' and not selected_cabang %}bg-white text-black{% else %}bg-black text-white hover:text-white border border-white/30{% endif %}">
+          Seni
+        </a>
+        <a href="/nordelia/spreadsheet?category=cosplay"
+           class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap {% if selected_category == 'cosplay' and not selected_cabang %}bg-purple-600 text-white{% else %}bg-black text-purple-300 hover:text-white border border-purple-500/40{% endif %}">
+          Cosplay
+        </a>
+        <a href="/nordelia/spreadsheet?category=olahraga"
+           class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap {% if selected_category == 'olahraga' and not selected_cabang %}bg-[#FF7A00] text-black{% else %}bg-black text-[#FF7A00] hover:text-white border border-[#FF7A00]/40{% endif %}">
+          Olahraga
+        </a>
+        <a href="/nordelia/spreadsheet?category=format"
+           class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap {% if selected_category == 'format' %}bg-white text-black{% else %}bg-black text-stone-300 hover:text-white border border-white/10{% endif %}">
+          Format Pendaftaran (CSV)
+        </a>
+      </div>
+
+      <div class="relative min-w-[240px]">
+        <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"><use href="#i-search"></use></svg>
+        <input id="table-search" type="text" placeholder="Filter nama peserta, kelas, atau lomba..."
+               class="w-full pl-9 pr-4 py-2 text-xs rounded-xl bg-black border border-white/20 text-white placeholder-stone-500 focus:outline-none focus:border-[#38BDF8]" />
+      </div>
+    </div>
+
+    <!-- Quick Select Sheet per Cabang Lomba -->
+    <div class="p-3.5 rounded-2xl bg-[#0F172A] border border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#FBBF24] animate-pulse"></span>
+        <span class="font-bold text-[#38BDF8]">Pilih Sheet Lomba:</span>
+        <select onchange="window.location.href=this.value"
+                class="px-3 py-1.5 rounded-xl bg-black border border-white/20 text-xs text-white focus:outline-none focus:border-[#38BDF8] max-w-xs sm:max-w-md">
+          <option value="/nordelia/spreadsheet?category=semua">-- Master Pendaftaran (Semua Lomba) --</option>
+          {% for cb in cabang_lomba %}
+            <option value="/nordelia/spreadsheet?cabang={{ cb.id }}" {% if selected_cabang == cb.id %}selected{% endif %}>
+              Sheet: {{ cb.sheet_name }} ({{ cb.category | capitalize }})
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      {% if selected_cabang %}
+        <div class="flex items-center gap-2">
+          <span class="text-stone-300">Menampilkan sheet khusus: <strong class="text-white">{{ selected_cabang }}</strong></span>
+          <a href="/nordelia/spreadsheet?category=semua" class="px-2.5 py-1 rounded-lg text-[11px] font-bold bg-white/10 text-stone-300 hover:text-white hover:bg-white/20">
+            &times; Kembali ke Master
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- CONTENT VIEW -->
+  {% if selected_category == 'format' %}
+    <!-- SHEET 2 FORMAT VIEW -->
+    <div class="rounded-3xl p-6 bg-[#0F172A] border border-[#38BDF8]/30 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <h3 class="text-xl font-black text-[#FDE68A]">Format Resmi Pendaftaran Lomba (CSV)</h3>
+          <p class="text-xs text-stone-300">Struktur pengisian formulir sesuai standar koordinator panitia Nordelia 2026.</p>
+        </div>
+        <a href="/api/nordelia/format-pendaftaran.csv"
+           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-black bg-gradient-to-r from-[#FDE68A] via-[#F5D061] to-[#E5B869] hover:brightness-110 shadow-md">
+          <svg class="w-4 h-4"><use href="#i-download"></use></svg>
+          <span>Unduh Format Pendaftaran (CSV)</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {% for fmt in sheet2_formats %}
+          <div class="p-5 rounded-2xl bg-black/70 border border-white/10 space-y-3">
+            <h4 class="text-xs font-black uppercase text-[#38BDF8] tracking-wider">{{ fmt.kategori_lomba }}</h4>
+            <div class="p-3 rounded-xl bg-black font-mono text-xs text-stone-200 space-y-1 border-l-2 border-[#38BDF8]">
+              {% for line in fmt.format_isi %}
+                <div>{{ line }}</div>
+              {% endfor %}
+            </div>
+            <p class="text-[11px] text-stone-400">{{ fmt.catatan }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  {% else %}
+    <!-- LIVE SPREADSHEET TABLE -->
+    <div class="rounded-3xl border border-white/10 bg-[#0F172A] overflow-hidden shadow-2xl">
+      <div class="overflow-x-auto max-h-[600px]">
+        <table class="w-full text-left text-xs text-stone-200">
+          <thead class="text-[11px] uppercase tracking-wider text-white bg-black border-b border-white/10 sticky top-0 backdrop-blur-md">
+            <tr>
+              <th class="py-3.5 px-4 font-black">ID</th>
+              <th class="py-3.5 px-4 font-black">Waktu Masuk</th>
+              <th class="py-3.5 px-4 font-black">Kategori</th>
+              <th class="py-3.5 px-4 font-black">Cabang Lomba</th>
+              <th class="py-3.5 px-4 font-black">Nama Peserta / Tim</th>
+              <th class="py-3.5 px-4 font-black">Kelas</th>
+              <th class="py-3.5 px-4 font-black">WhatsApp</th>
+              <th class="py-3.5 px-4 font-black">Detail / Format Khusus</th>
+              <th class="py-3.5 px-4 font-black">Sumber Data</th>
+              <th class="py-3.5 px-4 font-black text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="spreadsheet-full-tbody" class="divide-y divide-white/5 font-mono">
+            {% if registrations %}
+              {% for r in registrations %}
+                <tr class="hover:bg-white/5 transition-colors" data-table-row>
+                  <td class="py-3.5 px-4 text-stone-500 font-mono align-top">#{{ r.id }}</td>
+                  <td class="py-3.5 px-4 text-stone-400 whitespace-nowrap align-top">{{ r.created_at }}</td>
+                  <td class="py-3.5 px-4 align-top">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase
+                                 {% if r.category_id == 'akademik' %}bg-[#0284C7]/20 text-[#38BDF8] border border-[#38BDF8]/30
+                                 {% elif r.category_id == 'bahasa' %}bg-[#FBBF24]/20 text-[#FBBF24] border border-[#FBBF24]/30
+                                 {% elif r.category_id == 'seni' %}bg-white/15 text-white border border-white/30
+                                 {% else %}bg-[#FF7A00]/20 text-[#FF7A00] border border-[#FF7A00]/30{% endif %}">
+                      {{ r.category_id }}
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 font-sans font-bold text-white whitespace-nowrap align-top">{{ r.cabang_name }}</td>
+                  <td class="py-3.5 px-4 font-sans text-stone-100 font-semibold align-top whitespace-pre-line leading-relaxed min-w-[220px]">{{ r.participant_name | replace('\\n', '\n') }}</td>
+                  <td class="py-3.5 px-4 font-sans align-top whitespace-pre-line leading-relaxed min-w-[120px]">{{ r.kelas | replace('\\n', '\n') }}</td>
+                  <td class="py-3.5 px-4 whitespace-nowrap align-top">{{ r.whatsapp }}</td>
+                  <td class="py-3.5 px-4 font-sans text-[11px] text-stone-300 max-w-sm align-top">
+                    {% if r.details and r.details is mapping %}
+                      <div class="space-y-1.5">
+                        {% set found_extra = [] %}
+                        {% for k, v in r.details.items() %}
+                          {% if k not in ['id', 'created_at', 'category_id', 'cabang_id', 'cabang_name', 'sheet_name', 'nama_lengkap', 'nama_tim', 'nama', 'kelas', 'whatsapp', 'csrf_token', 'raw'] and v and v != '-' %}
+                            {% set _ = found_extra.append(k) %}
+                            <div class="bg-black/40 p-2 rounded-xl border border-white/5">
+                              <span class="text-stone-400 font-bold uppercase text-[9px] tracking-wider block">{{ k | replace('_', ' ') }}:</span>
+                              <div class="text-stone-200 whitespace-pre-line leading-relaxed mt-0.5">{{ v | replace('\\n', '\n') }}</div>
+                            </div>
+                          {% endif %}
+                        {% endfor %}
+                        {% if not found_extra %}
+                          <span class="text-stone-500">-</span>
+                        {% endif %}
+                      </div>
+                    {% elif r.details and r.details != '-' %}
+                      <div class="whitespace-pre-line leading-relaxed text-stone-300">{{ r.details | replace('\\n', '\n') }}</div>
+                    {% else %}
+                      <span class="text-stone-500">-</span>
+                    {% endif %}
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap font-sans align-top">
+                    <span class="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-bold">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Real-Time Database
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 text-center whitespace-nowrap font-sans align-top">
+                    <button type="button"
+                            class="btn-delete-row px-2.5 py-1 rounded-lg text-xs font-bold text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 hover:border-rose-500/60 transition-all inline-flex items-center gap-1.5 shadow-sm hover:scale-105"
+                            data-id="{{ r.id }}"
+                            data-name="{{ r.participant_name }}"
+                            data-cabang="{{ r.cabang_name }}">
+                      <svg class="w-3.5 h-3.5 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                      <span>Hapus</span>
+                    </button>
+                  </td>
+                </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="10" class="py-16 text-center text-stone-400 font-sans">
+                  Belum ada data pendaftaran di kategori ini.
+                </td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p-4 border-t border-white/10 bg-black/60 flex items-center justify-between text-xs text-stone-400">
+        <span>Menampilkan {{ registrations|length }} entri pendaftaran real-time.</span>
+        <a href="/nordelia#section-cabang" class="text-[#38BDF8] font-bold hover:underline">
+          + Tambah Pendaftaran Baru
+        </a>
+      </div>
+    </div>
+  {% endif %}
+
+</div>
+
+
+<!-- MODAL KONFIRMASI HAPUS PESERTA -->
+<div id="modal-delete-confirm" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+  <div class="relative w-full max-w-md rounded-3xl p-6 bg-[#0F172A] border border-rose-500/40 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_30px_rgba(244,63,94,0.2)] text-center space-y-4">
+    <div class="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center bg-rose-500/15 border border-rose-500/30 text-rose-400">
+      <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+      </svg>
+    </div>
+    
+    <div class="space-y-1">
+      <h3 class="text-lg font-black text-white">Konfirmasi Hapus Data Peserta</h3>
+      <p class="text-xs text-stone-300">
+        Apakah Anda yakin ingin menghapus data pendaftaran berikut? Tindakan ini <span class="text-rose-400 font-bold">tidak dapat dibatalkan</span>.
+      </p>
+    </div>
+
+    <div class="p-4 rounded-2xl bg-black/60 border border-white/10 text-left space-y-1.5 text-xs font-mono">
+      <div class="text-stone-400">ID: <strong class="text-white" id="del-modal-id">#</strong></div>
+      <div class="text-stone-400">Peserta / Tim: <strong class="text-amber-300" id="del-modal-name">-</strong></div>
+      <div class="text-stone-400">Cabang Lomba: <strong class="text-sky-300" id="del-modal-cabang">-</strong></div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 pt-2">
+      <button type="button" id="btn-cancel-delete" class="py-2.5 px-4 rounded-xl text-xs font-bold text-stone-300 bg-white/10 hover:bg-white/20 transition-all">
+        Batal
+      </button>
+      <button type="button" id="btn-confirm-delete" class="py-2.5 px-4 rounded-xl text-xs font-bold text-white bg-rose-600 hover:bg-rose-500 shadow-lg shadow-rose-600/30 transition-all flex items-center justify-center gap-1.5">
+        <span id="btn-delete-spinner" class="hidden w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+        <span id="btn-delete-text">Ya, Hapus Data</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("table-search");
+  const rows = Array.from(document.querySelectorAll("[data-table-row]"));
+
+  searchInput?.addEventListener("input", function () {
+    const q = (this.value || "").toLowerCase().trim();
+    rows.forEach(function (row) {
+      const text = row.textContent.toLowerCase();
+      row.classList.toggle("hidden", q && !text.includes(q));
+    });
+  });
+
+  // LOGIKA HAPUS DATA DENGAN KONFIRMASI
+  const modalDel = document.getElementById("modal-delete-confirm");
+  const btnCancelDel = document.getElementById("btn-cancel-delete");
+  const btnConfirmDel = document.getElementById("btn-confirm-delete");
+  const delModalId = document.getElementById("del-modal-id");
+  const delModalName = document.getElementById("del-modal-name");
+  const delModalCabang = document.getElementById("del-modal-cabang");
+  const btnDelText = document.getElementById("btn-delete-text");
+  const btnDelSpinner = document.getElementById("btn-delete-spinner");
+
+  let activeRow = null;
+  let activeId = null;
+
+  document.querySelectorAll(".btn-delete-row").forEach(btn => {
+    btn.addEventListener("click", function () {
+      activeId = this.getAttribute("data-id");
+      const name = this.getAttribute("data-name");
+      const cabang = this.getAttribute("data-cabang");
+      activeRow = this.closest("tr");
+
+      delModalId.textContent = "#" + activeId;
+      delModalName.textContent = name;
+      delModalCabang.textContent = cabang;
+
+      modalDel.classList.remove("hidden");
+    });
+  });
+
+  btnCancelDel?.addEventListener("click", function () {
+    modalDel.classList.add("hidden");
+    activeId = null;
+    activeRow = null;
+  });
+
+  btnConfirmDel?.addEventListener("click", async function () {
+    if (!activeId) return;
+
+    btnConfirmDel.disabled = true;
+    btnDelSpinner.classList.remove("hidden");
+    btnDelText.textContent = "Menghapus...";
+
+    try {
+      const res = await fetch("/api/nordelia/registrations/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: activeId })
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        modalDel.classList.add("hidden");
+        if (activeRow) {
+          activeRow.style.transition = "all 0.4s ease";
+          activeRow.style.opacity = "0";
+          activeRow.style.transform = "translateX(20px)";
+          setTimeout(() => {
+            activeRow.remove();
+          }, 400);
+        }
+      } else {
+        alert(data.error || "Gagal menghapus data.");
+      }
+    } catch (err) {
+      alert("Terjadi kendala jaringan saat menghapus data: " + err.message);
+    } finally {
+      btnConfirmDel.disabled = false;
+      btnDelSpinner.classList.add("hidden");
+      btnDelText.textContent = "Ya, Hapus Data";
+      activeId = null;
+      activeRow = null;
+    }
+  });
+});
+</script>
+{% endblock %}
